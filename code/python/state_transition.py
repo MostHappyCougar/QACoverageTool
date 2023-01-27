@@ -10,20 +10,31 @@ class StateTransitionDiagram:
     states - the states related to object
     transitions - transitions between states
     '''
+    
     def __init__(self, table_to_analizys:"DataFrame", sequencer:str, object_id_is:str, transitions:str, states:str):
         self.__obj_name = object_id_is
-        #Table to analisys
-        self.__table = pd.DataFrame(table_to_analizys, columns=[sequencer, object_id_is, transitions, states]).sort_values(by=[sequencer])
+        
+        #Initiate an empty dataframe
+        self.__table = pd.DataFrame(columns=["seq", "object", "transitions", "states"])
+        
+        #Filling dataframe step by step considering multiconditional state (i.e considering values from different columns as ONE state if it is required)
+        self.__table["seq"] = table_to_analizys[sequencer].astype(str).apply(", ".join, axis=1)
+        self.__table["object"] = table_to_analizys[object_id_is].astype(str).apply(", ".join, axis=1)
+        self.__table["transitions"] = table_to_analizys[transitions].astype(str).apply(", ".join, axis=1)
+        self.__table["states"] = table_to_analizys[states].astype(str).apply(", ".join, axis=1)
+        
         #List of unique objects
-        self.__objects = self.__table[object_id_is].unique()
+        self.__objects = self.__table["object"].unique()
         #List of unique states
-        self.__states = self.__table[states].unique()
+        self.__states = self.__table["states"].unique()
         #List of unique transitions
-        self.__transitions = self.__table[transitions].unique() 
+        self.__transitions = self.__table["transitions"].unique() 
+        return
         
         
     def draw_state_transitions_diagram(self) -> None:
-        graph = graphviz.Digraph(comment="name_of_graph", graph_attr={"concentrate":"true"})
+        
+        graph = graphviz.Digraph(comment="name_of_graph", graph_attr={"concentrate":"false"})
         graph.node("START", "START", fontcolor="white", fillcolor="red", style="filled")
         graph.node("END", "END", fontcolor="white", fillcolor="red", style="filled")
         
@@ -36,6 +47,7 @@ class StateTransitionDiagram:
                 except:
                     graph.edge(object_states[rng][3], "END")
         graph.view()
+        return
         
         
         
