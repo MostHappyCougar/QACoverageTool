@@ -1,0 +1,17 @@
+// name_of_graph
+digraph {
+	graph [concentrate=true]
+	START [label=START fillcolor=red fontcolor=white style=filled]
+	END [label=END fillcolor=red fontcolor=white style=filled]
+	START -> new
+	new -> pfilled [label=trade]
+	pfilled -> canceled [label=cancel]
+	canceled -> END
+	START -> new
+	new -> filled [label=trade]
+	filled -> END
+	START -> new
+	new -> new [label=amend]
+	new -> canceled [label=cancel]
+	canceled -> END
+}
