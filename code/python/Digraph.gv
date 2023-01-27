@@ -1,6 +1,6 @@
 // name_of_graph
 digraph {
-	graph [concentrate=false]
+	graph [concentrate=false imagescale=true]
 	START [label=START fillcolor=red fontcolor=white style=filled]
 	END [label=END fillcolor=red fontcolor=white style=filled]
 	START -> new

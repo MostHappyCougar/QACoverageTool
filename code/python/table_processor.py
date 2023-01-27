@@ -15,9 +15,12 @@ test = ((1, "f", "new", "new", "a"),
 
 df = pd.DataFrame(test, columns=["seq", "ord", "trans", "state", "test"])
 
-list_of_state = ["state"]
+states_list = ["state"]
+trans_list = ["trans"]
+obj_list = ["ord"]
+seq_list = ["seq"]
 
-st = state_transition.StateTransitionDiagram(df, ["seq"], ["ord"], ["trans"], list_of_state)
+st = state_transition.StateTransitionDiagram(df, seq_list, obj_list, trans_list, states_list)
 st.draw_state_transitions_diagram()
 
 
