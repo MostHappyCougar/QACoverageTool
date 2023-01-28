@@ -55,7 +55,7 @@ class StateTransitionDiagram:
             
             self.__transitions_list.append(np.array(object_states)[:, 2:])
             #START node links to first enter to the diagram
-            graph.edge("START", object_states[0][3])
+            graph.edge("START", object_states[0][3], object_states[0][2])
             
             #Link current state to the next one 
             for state in range(len(object_states)):

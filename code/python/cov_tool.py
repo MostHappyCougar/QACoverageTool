@@ -16,7 +16,7 @@ try:
     transitions = [sys.argv[3]]
     states = [sys.argv[4]]
 except IndexError:
-    objects, sequence, transitions, states = ["obj"], ["seq"], ["trans"], ["state"]
+    objects, sequence, transitions, states = ["obj"], ["seq"], ["action"], ["placed", "canceled"]
 
 files = "test"
 subdir = "test"
