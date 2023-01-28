@@ -43,7 +43,7 @@ class StateTransitionDiagram:
         
     def draw_state_transitions_diagram(self) -> None:
         
-        graph = graphviz.Digraph(self.__files, graph_attr={"concentrate":"true", "imagescale": "true"})
+        graph = graphviz.Digraph(self.__files, graph_attr={"concentrate":"true", "imagescale": "true"}, strict=True)
         #START node. All diagrams will be begin here
         graph.node("START", "START", fontcolor="white", fillcolor="red", style="filled")
         #END node. All diagrams will be end here
