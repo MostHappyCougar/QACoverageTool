@@ -8,11 +8,13 @@ class OutputHandler:
         self.__full_path = os.path.join(self.__this_directory, self.__sub_directory)
         return
     
+    
     def directory_createion(self) -> None:
         if os.path.exists(self.__full_path) == False:
             print("test")
             os.mkdir(self.__full_path)
         return
+    
     
     def get_directory(self) -> str:
         return os.path.join(self.__full_path)
