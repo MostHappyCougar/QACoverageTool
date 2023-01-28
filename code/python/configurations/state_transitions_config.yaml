@@ -1,0 +1,24 @@
+#There is the configuration for state and transitions analysis
+
+
+#All generated files will be saved here. Last name in this path is the name that will be assignet to all generated files
+output_files: TEST\test
+
+#States and transitions will be assignet to object baset on these table columns. 
+#When values from objects columns is same for several actions then these actions will be related to same object
+objects:
+   - obj
+
+#Sequence of transitions and states will be considered based on this field
+sequences:
+   - seq
+   
+#Transitions will be took from these fields
+transitions:
+   - action
+
+#States will be took from these fields
+states:
+   - placed
+   - canceled
+
