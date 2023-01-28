@@ -1,6 +1,11 @@
-import analisys
 import pandas as pd
+import directory_handler
+import os
 
+input_file = directory_handler.OutputHandler("tables_to_analisys")
+path_to_table = os.path.join(input_file.get_directory(), "test.xlsx")
+
+'''
 test = ((1, "f", "new", "new", "a"),
         (2, "f", "trade", "pfilled", "s"),
         (3, "f", "cancel", "canceled", "d"),
@@ -16,7 +21,9 @@ test = ((1, "f", "new", "new", "a"),
         (1, "r", "new", "new", "a"),
         (2, "r", "trade", "pfilled", "s"),
         (3, "r", "cancel", "canceled", "d"),)
+df = pd.DataFrame(test, columns=["seq", "obj", "trans", "state", "test"])
+'''
+df = pd.read_excel(path_to_table, "test")
 
-df = pd.DataFrame(test, columns=["seq", "ord", "trans", "state", "test"])
 
 

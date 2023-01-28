@@ -4,20 +4,25 @@ Enter point to the utility
 
 import table_processor
 import analisys
-import output_handler
+import directory_handler
 import os
+import sys
 
-output = output_handler.OutputHandler("output")
+output = directory_handler.OutputHandler("output")
 
-states_list = ["state"]
-trans_list = ["trans"]
-obj_list = ["ord"]
-seq_list = ["seq"]
+try:
+    objects = [sys.argv[1]]
+    sequence = [sys.argv[2]]
+    transitions = [sys.argv[3]]
+    states = [sys.argv[4]]
+except IndexError:
+    objects, sequence, transitions, states = ["obj"], ["seq"], ["trans"], ["state"]
 
 files = "test"
 subdir = "test"
-output_artifacts = os.path.join(output.get_output_directory(), subdir, files)
 
-state_diagram = analisys.StateTransitionDiagram(table_processor.df, seq_list, obj_list, trans_list, states_list, output_artifacts)
+output_artifacts = os.path.join(output.get_directory(), subdir, files)
+
+state_diagram = analisys.StateTransitionDiagram(table_processor.df, sequence, objects, transitions, states, output_artifacts)
 state_diagram.draw_state_transitions_diagram()
 state_diagram.fetch_transactions_statistics()
