@@ -36,7 +36,7 @@ $ python cov_tool.py std
 #### Configuration: 
 Config file for this usage case is: `code/python/configurations/state_transitions_config.yaml`
 
-#### Imput Table for analysis:
+#### Iтput Table for analysis - there is should no merged cells:
 ![image](https://user-images.githubusercontent.com/104580123/215318025-ba3d7ca3-8e6e-408c-86be-5dce72c41b4a.png)
 
 #### Analysis results:
