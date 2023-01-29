@@ -17,7 +17,7 @@ or
 ```
 $ pip install -r path/to/requirements.txt
 ```
-from any work directory.
+from any work directory
 
 # Usage
 To use this utility you should run `cov_tool.py` as regular python script with any of following arguments means analysis mode (**At this moment there is only one mod**):
