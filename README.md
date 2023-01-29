@@ -22,7 +22,7 @@ from any work directory.
 # Usage
 To use this utility you should run `cov_tool.py` as regular python script with any of following arguments means analysis mode:
 
-### Example:
+**Example:**
 ```
 $ python cov_tool.py std
 ```
@@ -36,7 +36,7 @@ $ python cov_tool.py std
 #### Configuration: 
 Config file for this usage case is: `code/python/configurations/state_transitions_config.yaml`
 
-#### Iтput Table for analysis - there is should be no merged cells:
+#### Input Table for analysis - there is should be no merged cells:
 ![image](https://user-images.githubusercontent.com/104580123/215318025-ba3d7ca3-8e6e-408c-86be-5dce72c41b4a.png)
 
 #### Analysis results:
