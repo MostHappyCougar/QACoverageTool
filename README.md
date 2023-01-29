@@ -1,7 +1,7 @@
 # Description
 Utility to perform coverage analysis for tests. This utility is applicable for xlsx documents with structure that correlate to the analysis mode
 
-# How to install:
+# How to install
 ```
 $ git clone https://github.com/MostHappyCougar/QACoverageTool.git
 ```
