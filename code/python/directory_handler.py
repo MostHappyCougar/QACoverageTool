@@ -11,7 +11,6 @@ class OutputHandler:
     
     def directory_createion(self) -> None:
         if os.path.exists(self.__full_path) == False:
-            print("test")
             os.mkdir(self.__full_path)
         return
     

@@ -5,13 +5,7 @@ from matplotlib import pyplot as plt
 
 class StateTransitionDiagram:
     '''
-    Class to generate state transition diagram based on csv table.
-    
-    sequencer - is column a table will be sorted based on. Based on this column will be created a sequence of states and transitions
-    order_by - Different states and transitions will be considered as related to object based on this field. If values from column order_by is same 
-    for different states then these states will be related to this object
-    states - the states related to object
-    transitions - transitions between states
+    Class to generate state-transitions diagrams based on xlsx table
     '''
     
     def __init__(self, table_to_analizys:"DataFrame", sequencer:str, group_by:str, transitions:str, states:str, output_files:str):

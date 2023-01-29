@@ -4,6 +4,11 @@
 #All generated files will be saved here. Last name in this path is the name that will be assignet to all generated files
 output_files: TEST\test
 
+#Table and sheet where data to analysis fill be take from
+input_directory: tables_to_analisys
+input_table: test.xlsx
+input_sheet: test
+
 #States and transitions will be assignet to object baset on these table columns. 
 #When values from objects columns is same for several actions then these actions will be related to same object
 objects:
