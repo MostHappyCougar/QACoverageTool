@@ -8,7 +8,7 @@ $ git clone https://github.com/MostHappyCougar/QACoverageTool.git
 Or just download packages from last release
 
 ## Requirements
-_requirements.txt_ file is in code/python directory of this utility.
+`requirements.txt` file is in code/python directory of this utility.
 Change current work directory to `some/path/to/code/python` then execute in terminal to install requirements: 
 ```
 $ pip install -r requirements.txt
@@ -20,15 +20,8 @@ $ pip install -r path/to/requirements.txt
 from any work directory.
 
 # Usage
-To use this utility you should run `cov_tool.py` as regular python script with any of following arguments means analysis mode:
-
-**Example:**
-```
-$ python cov_tool.py std
-```
-
-**At this moment there is only one mod**
-
+To use this utility you should run `cov_tool.py` as regular python script with any of following arguments means analysis mode (**At this moment there is only one mod**):
+### Analisys mods
 1. `std` - state-transitions diagram
 <details>
 <summary>Usage Example - std</summary>
@@ -107,6 +100,11 @@ strict digraph "D:\Dev_Workspace\Eclipse\QACoverageTool\code\python\output\EXAMP
 
 ![image](https://user-images.githubusercontent.com/104580123/215318768-4b751ef9-c1bc-45c4-8dd4-91628adac263.png)
 </details>
+
+#### Example: 
+```
+$ python cov_tool.py std
+```
 
 ## Configuration
 Before script running you should configurate an analysis mode directly via related config stored in `code/python/configurations` (At this moment there is only one config for state-transitions diagram mode). Fields description is introduced in related config file. Also each config file is valid pre-configured for example files.
