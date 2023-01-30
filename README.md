@@ -20,15 +20,20 @@ $ pip install -r path/to/requirements.txt
 from any work directory
 
 # Usage
-To use this utility you should run `cov_tool.py` as regular python script with any of following arguments means analysis mode (**At this moment there is only one mod**):
+To use this utility you should run `cov_tool.py` as regular python script with config name as an argument (without file extension). There may be several configs listed. All configs enumerated in arguments at `cov_tool.py` starts will be parsed and applied for tests coverage analysis. When no configs listed as agruments then `conf_default.yaml` will be applied. To chose analysis mods that will be aplied for tests you should enumerate them in `analysis-mods` section of `.yaml` config. There is the list of available analysis mods:
+
 ## Analysis mods
-1. `std` - state-transitions diagram
-	<details><summary>Usage Example - std</summary>
+1. `state-transition` - state-transitions diagram
+	```yaml
+	analysis-mods:
+	   - state-transition
+	```
+	<details><summary>Usage Example - state-transition</summary>
 	
 	#### Preconditions:
 	- Configuration: 
 	
-		Config file for this usage case is: `code/python/configurations/state_transitions_config.yaml`
+		Config file for this usage case is: `code/python/configurations/conf_default.yaml`
 
 	- Input table for analysis - there is should be no merged cells:
 		
@@ -42,7 +47,7 @@ To use this utility you should run `cov_tool.py` as regular python script with a
 	
 		<details><summary>test.gv - dot-language file for state-transitions diagram</summary>
 
-		```
+		```dot
 		strict digraph "D:\Dev_Workspace\Eclipse\QACoverageTool\code\python\output\EXAMPLE\test" {
 			graph [concentrate=true imagescale=true]
 			START [label=START fillcolor=red fontcolor=white style=filled]
@@ -116,8 +121,5 @@ To use this utility you should run `cov_tool.py` as regular python script with a
 
 #### Example: 
 ```
-$ python cov_tool.py std
+$ python cov_tool.py conf_default
 ```
-
-## Configuration
-Before script running you should configurate an analysis mode directly via related config stored in `code/python/configurations` (At this moment there is only one config for state-transitions diagram mode). Fields description is introduced in related config file. Also each config file is valid pre-configured for example files.
