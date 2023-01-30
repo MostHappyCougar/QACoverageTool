@@ -10,7 +10,7 @@ class SheetToAnalysis:
         return
     
     
-    def read_table(self) -> "PandasDataFrame":
+    def read_table(self) -> pd.DataFrame:
         return pd.read_excel(self.__path_to_table, self.__sheet)
 
 
