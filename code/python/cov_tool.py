@@ -7,28 +7,50 @@ import directory_handler
 import os
 import configs_reader
 import sys
+import numpy as np
 
+#Configs mentioned in run parameters
+configs = sys.argv[1:]
+
+#When no configs has been assigned then conf_default.yaml is being used
+if bool(sys.argv[1:]) == False:
+    configs = "conf_default"
+    
+#Create output folder
 out_folder = directory_handler.OutputHandler("output")
 output = out_folder.get_directory()
 out_folder.directory_createion()
 
-if sys.argv[1] == "std":
-    
-    #Read config for state-transitions analysis
-    _config = configs_reader.Configuration("state_transitions_config.yaml").get_conf_parameters()
-    #Get directory foir artifacts saving
-    output_artifacts = os.path.join(output, _config["output_files"])
-    
-    #Table for analysis
-    _table = table_processor.SheetToAnalysis(_config["input_directory"], _config["input_table"], _config["input_sheet"])
-    #Table converted to dataframe to analysis
-    _data = _table.read_table()
-    
-    
-    state_diagram = analisys.StateTransitionDiagram(_data, _config["sequences"], _config["objects"], _config["transitions"], _config["states"], output_artifacts)
-    state_diagram.draw_state_transitions_diagram()
-    state_diagram.fetch_transactions_statistics()
-    
-    print(f"\nStates-transitions analysys has been succesfully performed. Actifacts saved upon: {output_artifacts}")
-    
-
+#Get list of configs
+for config in np.unique(configs):
+    #Foreach config listed get parameters
+    _params = configs_reader.Configuration(f"{config}.yaml").get_conf_parameters()
+    for mod in np.unique(_params["analysis-mods"]):
+        if mod == "state-transition":
+            #Get directory foir artifacts saving
+            output_artifacts = os.path.join(output, _params["state-transition"]["output_files"])
+            #Get input directory
+            _input_directory = _params["state-transition"]["input_directory"]
+            #Get table
+            _table = _params["state-transition"]["input_table"]
+            #Get sheet
+            _sheet = _params["state-transition"]["input_sheet"]
+            #Sequencer
+            _seq = _params["state-transition"]["sequences"]
+            #Grouper
+            _obj = _params["state-transition"]["objects"]
+            #Transitions
+            _transitions = _params["state-transition"]["transitions"]
+            #States
+            _state = _params["state-transition"]["states"]
+            
+            #Table for analysis
+            _table = table_processor.SheetToAnalysis(_input_directory, _table, _sheet)
+            #Table converted to dataframe to analysis
+            _data = _table.read_table()
+            
+            #Make analysis artifacts
+            state_diagram = analisys.StateTransitionDiagram(_data,_seq, _obj, _transitions, _state, output_artifacts)
+            state_diagram.draw_state_transitions_diagram()
+            state_diagram.fetch_transactions_statistics()
+            print(f"\nStates-transitions analysys has been succesfully performed. Actifacts saved upon: {output_artifacts}")
