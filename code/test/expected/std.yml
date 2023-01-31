@@ -1,0 +1,9 @@
+#############################################
+#List of expected STDOUT and STDERR messages#
+#############################################
+
+stdout:
+   SMOKE: "\r\nStates-transitions analysys has been succesfully performed. Actifacts saved upon: D:\\Dev_Workspace\\Eclipse\\QACoverageTool\\code\\python\\output\\EXAMPLE\\test\r\n"
+
+stderr:
+   SMOKE: ""
