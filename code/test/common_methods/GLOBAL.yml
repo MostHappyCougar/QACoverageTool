@@ -1,0 +1,11 @@
+###############################################################################
+#There is global parameters fot tests directly. It is not config of the system#
+###############################################################################
+
+
+relative_path:
+   from_test_to_utility: ..\\..\\python
+   from_test_to_expected: ..\\expected\\output_files
+   
+scripts:
+   enter_point: cov_tool.py

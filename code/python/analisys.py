@@ -60,7 +60,7 @@ class StateTransitionDiagram:
                     pass
                     graph.edge(object_states[state][3], "END")  
         
-        graph.view()
+        graph.render(directory=f"{self.__files}", view=False)
         return
     
     
