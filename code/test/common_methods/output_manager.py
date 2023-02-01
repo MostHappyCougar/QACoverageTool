@@ -2,6 +2,7 @@ import os
 import yaml
 import time
 import pytest
+import pandas as pd
 
 class ExpectedSTDMessages:
     '''
@@ -39,6 +40,10 @@ class FilesManagement:
         '''
         with open(os.path.join(self.__path_to_file, file), "rb") as f:
             return f.read()
+    
+    
+    def read_table(self, file:str) -> pd.DataFrame:
+        return pd.read_excel(os.path.join(self.__path_to_file, file))
         
     
     def remove_files(self, files:list, validate:bool=False) -> None:

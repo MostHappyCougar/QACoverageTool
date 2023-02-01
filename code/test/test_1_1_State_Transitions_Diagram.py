@@ -2,6 +2,7 @@ from common_methods import user_actions, output_manager, read_global
 import os
 import allure
 import pytest
+import pandas as pd
 
 @allure.parent_suite("1_Analysis_Mods")
 @allure.suite("1_1_State-Transitions_Diagram")
@@ -56,6 +57,8 @@ class TestStateTransitions():
                     for file in ["1_1_1_Positive.gv"]:
                         with allure.step(f"Compare {file}"):
                             assert _expected_output_files.read_file(file) == _output_files.read_file(file)
+                    with allure.step("Compare 1_1_1_Positive_stats.xlsx"):
+                        assert True == _expected_output_files.read_table("1_1_1_Positive_stats.xlsx").compare(_output_files.read_table("1_1_1_Positive_stats.xlsx")).empty
         finally:
             with allure.step("Postconditions"):
                 with allure.step("Flush output files and validate if there was generated"):
