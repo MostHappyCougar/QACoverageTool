@@ -1,6 +1,7 @@
 import os
 import yaml
 import time
+import pytest
 
 class ExpectedSTDMessages:
     '''
@@ -40,7 +41,7 @@ class FilesManagement:
             return f.read()
         
     
-    def remove_files(self, files:list) -> None:
+    def remove_files(self, files:list, validate:bool=False) -> None:
         '''
         It is usefull to remove output files before testing as precondition
         '''
@@ -48,6 +49,8 @@ class FilesManagement:
             self._file = os.path.join(self.__path_to_file, file)
             if os.path.isfile(self._file):
                 os.remove(self._file)
+            elif os.path.isfile(self._file)==False and validate==True:
+                pytest.fail(f"At the file removal detected {file} absense!")
         time.sleep(1)
         return
         

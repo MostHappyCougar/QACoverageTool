@@ -28,7 +28,8 @@ for config in np.unique(configs):
     for mod in np.unique(_params["analysis-mods"]):
         if mod == "state-transition":
             #Get directory foir artifacts saving
-            output_artifacts = os.path.join(output, _params["state-transition"]["output_files"])
+            output_artifacts = os.path.join(output, _params["state-transition"]["output_directory"])
+            output_filenames = _params["state-transition"]["file_names"]
             #Get input directory
             _input_directory = _params["state-transition"]["input_directory"]
             #Get table
@@ -50,7 +51,7 @@ for config in np.unique(configs):
             _data = _table.read_table()
             
             #Make analysis artifacts
-            state_diagram = analisys.StateTransitionDiagram(_data,_seq, _obj, _transitions, _state, output_artifacts)
+            state_diagram = analisys.StateTransitionDiagram(_data,_seq, _obj, _transitions, _state, output_artifacts, output_filenames)
             state_diagram.draw_state_transitions_diagram()
             state_diagram.fetch_transactions_statistics()
             print(f"\nStates-transitions analysys has been succesfully performed. Actifacts saved upon: {output_artifacts}")
