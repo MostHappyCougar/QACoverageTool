@@ -1,4 +1,4 @@
-strict digraph "D:\Dev_Workspace\Eclipse\QACoverageTool\code\python\output\EXAMPLE\test" {
+strict digraph EX_TEST {
 	graph [concentrate=true imagescale=true]
 	START [label=START fillcolor=red fontcolor=white style=filled]
 	END [label=END fillcolor=red fontcolor=white style=filled]

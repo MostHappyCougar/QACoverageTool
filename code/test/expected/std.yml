@@ -3,7 +3,7 @@
 #############################################
 
 stdout:
-   SMOKE: "\r\nStates-transitions analysys has been succesfully performed. Actifacts saved upon: D:\\Dev_Workspace\\Eclipse\\QACoverageTool\\code\\python\\output\\EXAMPLE\\test\r\n"
+   positive_1_1_1: "\r\nStates-transitions analysys has been succesfully performed. Actifacts saved upon: D:\\Dev_Workspace\\Eclipse\\QACoverageTool\\code\\python\\output\\1_1_1_Positive\r\n"
 
 stderr:
-   SMOKE: ""
+   positive_1_1_1: ""

@@ -1,0 +1,11 @@
+strict digraph "1_1_1_Positive" {
+	graph [concentrate=true imagescale=true]
+	START [label=START fillcolor=red fontcolor=white style=filled]
+	END [label=END fillcolor=red fontcolor=white style=filled]
+	START -> st1_1 [label=t1_1]
+	st1_1 -> st1_2 [label=t1_2]
+	st1_2 -> END
+	START -> st1_3 [label=t1_3]
+	st1_3 -> st1_4 [label=t1_4]
+	st1_4 -> END
+}

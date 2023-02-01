@@ -14,7 +14,6 @@ class User(object):
     
     
     def __init__(self, utility:str=_path_to_enter_point):
-        print(utility)
         self.__utility = utility
         return 
     

@@ -16,31 +16,34 @@ analysis-mods:
 #State-transitions diagram
 state-transition:
    #All generated files will be saved here.
-   output_directory: EXAMPLE
-   file_names: EX_TEST
+   output_directory: 1_1_1_Positive
+   file_names: 1_1_1_Positive
    #Table and sheet where data to analysis will be take from
    input_directory: tables_to_analisys
-   input_table: EXAMPLE.xlsx
-   input_sheet: test
+   input_table: TEST/1_1_1_TEST.xlsx
+   input_sheet: TEST_1
    
    #States and transitions will be assigned to object based on these table columns.
    #When values from objects columns is same for several states/transitions then these states/transitions will be related to this object
    #You may mention here a several columns. So each unique compination of values of mentioned columns will be considered as one unique object
    objects:
-      - TestCase
+      - Obj1
+
    
    #Sequence of transitions and states will be considered based on this field
    sequences:
-      - StepID
+      - Seq1
+
       
    #Transitions will be took from these fields
    #You may mention here a several columns. Each unique combination of values of mentioned columns will be considered as one transition
    transitions:
-      - Action
+      - Trans1
+
    
    #States will be took from these fields
    #You may mention here a several columns. Each unique combination of values from mentioned columns will be considered as one state
    states:
-      - CountToPlace
-      - CountToCancel
+      - State1
+      - State2
 

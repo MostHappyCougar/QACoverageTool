@@ -2,15 +2,19 @@ import graphviz
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
+import os
 
 class StateTransitionDiagram:
     '''
     Class to generate state-transitions diagrams based on xlsx table
     '''
     
-    def __init__(self, table_to_analizys:"DataFrame", sequencer:str, group_by:str, transitions:str, states:str, output_files:str):
+    def __init__(self, table_to_analizys:pd.DataFrame, sequencer:str, group_by:str, transitions:str, states:str, output_files:str, output_filenames:str):
         #Output files names
         self.__files = output_files
+        self.__filenames = output_filenames
+        
+        self.__statistics_files = os.path.join(self.__files, self.__filenames)
         
         #Initiate an empty dataframe
         self.__table = pd.DataFrame(columns=["seq", "object", "transitions", "states"])
@@ -37,7 +41,7 @@ class StateTransitionDiagram:
         
     def draw_state_transitions_diagram(self) -> None:
         
-        graph = graphviz.Digraph(self.__files, graph_attr={"concentrate":"true", "imagescale": "true"}, strict=True)
+        graph = graphviz.Digraph(name=self.__filenames, graph_attr={"concentrate":"true", "imagescale": "true"}, strict=True)
         #START node. All diagrams will be begin here
         graph.node("START", "START", fontcolor="white", fillcolor="red", style="filled")
         #END node. All diagrams will be end here
@@ -77,14 +81,14 @@ class StateTransitionDiagram:
         self.__transitions_stats.index.name = "TransitionID"
         
         #Save transitions statistics
-        with pd.ExcelWriter(f"{self.__files}_stats.xlsx") as writer:
+        with pd.ExcelWriter(f"{self.__statistics_files}_stats.xlsx") as writer:
             self.__transitions_stats.to_excel(writer, "TransitionsStatistics")
         
         #Save transitions statistics visualisation
         fig, (ax1) = plt.subplots()
         ax1.set(title="Transition frequency by TransitionID")
         ax1.pie(x=self.__transitions_stats["Count"], labels=self.__transitions_stats.index, autopct='%1.1f%%')
-        plt.savefig(f"{self.__files}_stats_vis.pdf")
+        plt.savefig(f"{self.__statistics_files}_stats_vis.pdf")
         return
         
         
