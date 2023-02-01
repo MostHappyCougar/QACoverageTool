@@ -1,5 +1,7 @@
 # Description
-Utility to perform coverage analysis for tests. This utility is applicable for xlsx documents with structure that correlate to the analysis mode
+Utility to perform tests coverage analysis based on `xlsx` tables e.g scenarios, test cases or download of system states. This utility is applicable for documents with structure that correlate to the analysis mode. Structures of tables that analysis mods os applicable to will be described in Wiki for each analysis mod. 
+
+**As per at this moment implemented only state-transitions diagram mod the structure of tables can be referred from examples or test library**
 
 # How to install
 ```
