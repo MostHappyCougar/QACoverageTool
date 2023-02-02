@@ -48,8 +48,8 @@ class TestStateTransitions():
                 with allure.step("Artifacts"):
                     with allure.step("Return Code"):
                         assert 0 == _actual_artifacts["ReturnCode"]
-                    #with allure.step("STDOUT"):
-                        #assert _expected_artifacts.read()["stdout"]["positive_1_1_1"] == _actual_artifacts["STDOUT"].decode()
+                    with allure.step("STDOUT"):
+                        assert _expected_artifacts.read()["stdout"]["positive_1_1_1"] == _actual_artifacts["STDOUT"].decode()
                     with allure.step("STDERR"):
                         assert _expected_artifacts.read()["stderr"]["positive_1_1_1"] == _actual_artifacts["STDERR"].decode()
                 with allure.step("Output Files"):
