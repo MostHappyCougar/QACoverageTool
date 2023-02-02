@@ -3,8 +3,7 @@
 #############################################
 
 stdout:
-   positive_1_1_1: '\r\nStates-transitions analysys has been succesfully performed. Actifacts saved upon: 
-                     D:\Dev_Workspace\Jenkins\data\workspace\QACoverageTool_Regression\system\code\python\output\1_1_1_Positive\r\n'
+   positive_1_1_1: 'States-transitions analysys has been succesfully performed. Actifacts saved upon: D:\Dev_Workspace\Jenkins\data\workspace\QACoverageTool_Regression\system\code\python\output\1_1_1_Positive'
 
 stderr:
    positive_1_1_1: ""
