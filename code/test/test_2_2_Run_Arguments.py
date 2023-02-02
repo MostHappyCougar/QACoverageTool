@@ -42,9 +42,9 @@ class TestPositive:
         with allure.step("Postconditions"):
                 with allure.step("Flush output files and validate if there was generated"):
                     if run_arguments:
-                        with allure.step("First config"):
+                        with allure.step("Output of FIRST config"):
                             _output_files_f.remove_files(files=_output_files_list, validate=True)
-                        with allure.step("First config"):
+                        with allure.step("Output of SECOND config"):
                             _output_files_s.remove_files(files=_output_files_list, validate=True)
                     else:
                         with allure.step("Empty Config"):
