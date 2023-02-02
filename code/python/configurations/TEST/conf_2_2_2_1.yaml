@@ -1,0 +1,49 @@
+
+##############################################
+#ANALYSIS MODS THAT WILL BE APPLIED FOR TESTS#
+#                                            #
+#Applicable mods:                            #
+# - state-transitions                        #
+##############################################
+analysis-mods:
+   - state-transition
+
+
+#########################################
+#DETAIL CONFIGURATIONS FOR ANALYSIS MODS#
+#########################################
+
+#State-transitions diagram
+state-transition:
+   #All generated files will be saved here.
+   output_directory: 2_2_2_Positive\case_1
+   file_names: 2_2_2_Positive
+   #Table and sheet where data to analysis will be take from
+   input_directory: tables_to_analisys
+   input_table: TEST/1_1_1_TEST.xlsx
+   input_sheet: TEST_1
+   
+   #States and transitions will be assigned to object based on these table columns.
+   #When values from objects columns is same for several states/transitions then these states/transitions will be related to this object
+   #You may mention here a several columns. So each unique compination of values of mentioned columns will be considered as one unique object
+   objects:
+      - Obj1
+      - Obj2
+   
+   #Sequence of transitions and states will be considered based on this field
+   sequences:
+      - Seq1
+      - Seq2
+      
+   #Transitions will be took from these fields
+   #You may mention here a several columns. Each unique combination of values of mentioned columns will be considered as one transition
+   transitions:
+      - Trans1
+      - Trans2
+   
+   #States will be took from these fields
+   #You may mention here a several columns. Each unique combination of values from mentioned columns will be considered as one state
+   states:
+      - State1
+      - State2
+

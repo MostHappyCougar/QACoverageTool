@@ -11,11 +11,11 @@ import pytest
 @allure.severity(allure.severity_level.CRITICAL)
 class TestStateTransitions():
     
-    @pytest.mark.parametrize("config, expected_files", [("TEST/std_case_1", "std_case1"),
-                                                        ("TEST/std_case_2", "std_case2"),
-                                                        ("TEST/std_case_3", "std_case3"),
-                                                        ("TEST/std_case_4", "std_case4"),
-                                                        ("TEST/std_case_5", "std_case5")])
+    @pytest.mark.parametrize("config, expected_files", [(["TEST/std_case_1"], "std_case1"),
+                                                        (["TEST/std_case_2"], "std_case2"),
+                                                        (["TEST/std_case_3"], "std_case3"),
+                                                        (["TEST/std_case_4"], "std_case4"),
+                                                        (["TEST/std_case_5"], "std_case5")])
     def test_StateTransitions(self, config, expected_files) -> None:
         #The list of expected files at the utility execution complete
         _output_files_list = ["1_1_1_Positive_stats_vis.pdf", "1_1_1_Positive_stats.xlsx", "1_1_1_Positive.gv", "1_1_1_Positive.gv.pdf"]
