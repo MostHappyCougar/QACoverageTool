@@ -23,7 +23,7 @@ class User(object):
         Just run utility or driver on behalf user. Returns tuple of captured Return Code, STDOIUT and STDERR as bytes
         '''
         try:
-            self.__utility_ran = sp.run(["python", self.__utility, arguments], timeout=timeout, stdout = sp.PIPE, stderr = sp.PIPE)
+            self.__utility_ran = sp.run(["python", self.__utility, *arguments], timeout=timeout, stdout = sp.PIPE, stderr = sp.PIPE)
             #Tuple of captured things
             self.__run_results = {"ReturnCode": self.__utility_ran.returncode, 
                                   "STDOUT": self.__utility_ran.stdout, 

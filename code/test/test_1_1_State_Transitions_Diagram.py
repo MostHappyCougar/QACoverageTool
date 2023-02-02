@@ -2,7 +2,6 @@ from common_methods import user_actions, output_manager, read_global
 import os
 import allure
 import pytest
-import pandas as pd
 
 @allure.parent_suite("1_Analysis_Mods")
 @allure.suite("1_1_State-Transitions_Diagram")
@@ -12,11 +11,11 @@ import pandas as pd
 @allure.severity(allure.severity_level.CRITICAL)
 class TestStateTransitions():
     
-    @pytest.mark.parametrize("config, expected_files", [("TEST/std_case_1", "std_case1"),
-                                                        ("TEST/std_case_2", "std_case2"),
-                                                        ("TEST/std_case_3", "std_case3"),
-                                                        ("TEST/std_case_4", "std_case4"),
-                                                        ("TEST/std_case_5", "std_case5")])
+    @pytest.mark.parametrize("config, expected_files", [(["TEST/std_case_1"], "std_case1"),
+                                                        (["TEST/std_case_2"], "std_case2"),
+                                                        (["TEST/std_case_3"], "std_case3"),
+                                                        (["TEST/std_case_4"], "std_case4"),
+                                                        (["TEST/std_case_5"], "std_case5")])
     def test_StateTransitions(self, config, expected_files) -> None:
         #The list of expected files at the utility execution complete
         _output_files_list = ["1_1_1_Positive_stats_vis.pdf", "1_1_1_Positive_stats.xlsx", "1_1_1_Positive.gv", "1_1_1_Positive.gv.pdf"]
@@ -32,7 +31,7 @@ class TestStateTransitions():
         _expected_output_files = output_manager.FilesManagement(_relative_path_to_expected_files)
         
         #Actual output files
-        _path_to_output_files = os.path.join(_global_parameters.get_params()["relative_path"]["from_test_to_utility"], "output", "1_1_1_Positive")
+        _path_to_output_files = os.path.join(_global_parameters.get_params()["relative_path"]["from_test_to_utility"], "output", "1_1_1_Positive")        
         _output_files = output_manager.FilesManagement(_path_to_output_files)
         
         with allure.step("Preconditions"):
