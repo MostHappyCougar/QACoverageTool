@@ -10,6 +10,10 @@ class StateTransitionDiagram:
     '''
     
     def __init__(self, table_to_analizys:pd.DataFrame, sequencer:str, group_by:str, transitions:str, states:str, output_files:str, output_filenames:str):
+        
+        #Sort states and transitions by sequencer
+        self.__table_sorted = table_to_analizys.sort_values([*group_by, *sequencer])
+        
         #Output files names
         self.__files = output_files
         self.__filenames = output_filenames
@@ -20,10 +24,10 @@ class StateTransitionDiagram:
         self.__table = pd.DataFrame(columns=["seq", "object", "transitions", "states"])
         
         #Filling dataframe step by step considering multiconditional state (i.e considering values from different columns as ONE state if it is required)
-        self.__table["seq"] = table_to_analizys[sequencer].astype(str).apply(", ".join, axis=1)
-        self.__table["object"] = table_to_analizys[group_by].astype(str).apply(", ".join, axis=1)
-        self.__table["transitions"] = table_to_analizys[transitions].astype(str).apply(", ".join, axis=1)
-        self.__table["states"] = table_to_analizys[states].astype(str).apply(", ".join, axis=1)
+        self.__table["seq"] = self.__table_sorted[sequencer].astype(str).apply(", ".join, axis=1)
+        self.__table["object"] = self.__table_sorted[group_by].astype(str).apply(", ".join, axis=1)
+        self.__table["transitions"] = self.__table_sorted[transitions].astype(str).apply(", ".join, axis=1)
+        self.__table["states"] = self.__table_sorted[states].astype(str).apply(", ".join, axis=1)
         
         #List of transitions tat take place. Will be used for making detail statistics of states and transitions 
         self.__transitions_list = []
