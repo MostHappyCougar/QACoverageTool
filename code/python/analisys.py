@@ -10,6 +10,10 @@ class StateTransitionDiagram:
     '''
     
     def __init__(self, table_to_analizys:pd.DataFrame, sequencer:str, group_by:str, transitions:str, states:str, output_files:str, output_filenames:str):
+        
+        #Sort states and transitions by sequencer
+        table_to_analizys.sort_values(sequencer)
+        
         #Output files names
         self.__files = output_files
         self.__filenames = output_filenames
