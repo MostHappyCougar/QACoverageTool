@@ -1,7 +1,7 @@
 # Description
-Utility to perform tests coverage analysis based on `xlsx` tables e.g scenarios, test cases or download of system states. This utility is applicable for documents with structure that correlate to the analysis mode. Structures of tables that analysis mods are applicable to will be described in Wiki for each analysis mod further. 
+Utility to perform tests coverage analysis based on `xlsx` tables e.g scenarios, test cases or download of system states. This utility is applicable for documents with structure that correlate to the analysis mode. 
 
-**As per at this moment implemented only state-transitions diagram mod the structure of tables can be referred from examples or test library**
+[To see more details please visit Wiki](https://github.com/MostHappyCougar/QACoverageTool/wiki)
 
 # How to install
 ```
