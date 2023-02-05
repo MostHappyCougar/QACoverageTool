@@ -4,7 +4,7 @@
 
 
 relative_path:
-   from_test_to_utility: ..\..\python
+   from_test_to_utility: ..\..\cov_tool
    from_test_to_expected: ..\expected\output_files
    
 scripts:
