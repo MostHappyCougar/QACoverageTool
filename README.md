@@ -11,7 +11,7 @@ Or just download packages from last release
 
 ## Requirements
 `requirements.txt` file is in code/python directory of this utility.
-Change current work directory to `some/path/to/code/python` then execute in terminal to install requirements: 
+Change current work directory to `some/path/to/code/cov_tool` then execute in terminal to install requirements: 
 ```
 $ pip install -r requirements.txt
 ```
@@ -22,7 +22,7 @@ $ pip install -r path/to/requirements.txt
 from any work directory
 
 # Usage
-To use this utility you should run `cov_tool.py` as regular python script with config name as an argument (without file extension). There may be several configs listed. All configs enumerated in arguments at `cov_tool.py` starts will be parsed and applied for tests coverage analysis. When no configs listed as agruments then `conf_default.yaml` will be applied. **This config is valid preconfigured for example files.** To chose analysis mods that will be aplied for tests you should enumerate them in `analysis-mods` section of `.yaml` config. There is the list of available analysis mods:
+To use this utility you should run `cov_tool` that placed in `/code/` directory of this utility with config name as an argument (without file extension). There may be several configs listed. All configs enumerated in arguments at `cov_tool` starts will be parsed and applied for tests coverage analysis. When no configs listed as agruments then `conf_default.yaml` will be applied. **This config is valid preconfigured for example files.** To chose analysis mods that will be aplied for tests you should enumerate them in `analysis-mods` section of `.yaml` config. There is the list of available analysis mods:
 
 ## Analysis mods
 1. `state-transition` - state-transitions diagram
@@ -123,5 +123,5 @@ To use this utility you should run `cov_tool.py` as regular python script with c
 
 #### Example: 
 ```
-$ python cov_tool.py conf_default
+$ python cov_tool conf_default
 ```
