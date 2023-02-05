@@ -9,21 +9,17 @@ import yaml
 from analysis import Analysis
 from save_data import ISaveData
 from config_reader import IReadConfig
-from input_processor import IInputProcessor
+from data_reader import DataFrameMaker
 
 
-class StateTransitionsDiagram(Analysis, ISaveData, IReadConfig, IInputProcessor):
+class StateTransitionsDiagram(Analysis, ISaveData, IReadConfig):
     
     def __init__(self, config: os.PathLike):
         self.config = os.path.join(os.path.dirname(__file__), "configurations", config + ".yaml")
         self.config_parsed = {}
         self.config_parameters = {}
         
-        
-    def made_dataframe(self) -> pd.DataFrame:
-        return pd.read_excel(os.path.join(self.get_parameter()["InputDirectory"], self.get_parameter()["Table"]), self.get_parameter()["Sheet"])
-        
-    
+
     def get_parameter(self) -> tuple:
         with open(self.config) as stream:
             self.config_parsed = yaml.load(stream, yaml.FullLoader) 
@@ -52,7 +48,10 @@ class StateTransitionsDiagram(Analysis, ISaveData, IReadConfig, IInputProcessor)
 
     
     def analyse(self) -> None:
-        self.sorted_dataframe = self.made_dataframe().sort_values([*self.get_parameter()["Group"], *self.get_parameter()["Seq"]])
+        self.input_reader = DataFrameMaker(os.path.join(self.get_parameter()["InputDirectory"], self.get_parameter()["Table"]))
+        self.dataframe = self.input_reader.create_dataframe(self.get_parameter()["Sheet"])
+        
+        self.sorted_dataframe = self.dataframe.sort_values([*self.get_parameter()["Group"], *self.get_parameter()["Seq"]])
         self.aggregated_table = pd.DataFrame(columns=["seq", "object", "transitions", "states"])
         
         self.aggregated_table["seq"] = self.sorted_dataframe[self.get_parameter()["Seq"]].astype(str).apply(", ".join, axis=1)

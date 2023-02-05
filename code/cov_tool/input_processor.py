@@ -8,7 +8,7 @@ class IInputProcessor(ABC):
         
         
     @abstractmethod
-    def made_dataframe(self):
+    def create_dataframe(self):
         pass
 
         
