@@ -4,7 +4,7 @@ import os
 
 class IReadConfig(ABC):
     '''
-    Interface that should be relized for configuration parsing. May be relized in different classes that requires to use config
+    Interface that should be realized for configuration parsing. May be realized in different classes that require to use config
     '''
         
     @abstractmethod    

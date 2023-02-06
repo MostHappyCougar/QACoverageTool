@@ -66,19 +66,24 @@ class StateTransitionsDiagram(Analysis, ISaveData, IReadConfig):
         self.sorted_dataframe = self.dataframe.sort_values([*self.get_parameter()["Group"], *self.get_parameter()["Seq"]])
         self.aggregated_table = pd.DataFrame(columns=["seq", "object", "transitions", "states"])
         
+        #Make aggregated dataframe from raw sorted input. 
+        #To consider multiparametrized states we should add list of values foreach parameters list per dataframe index
         self.aggregated_table["seq"] = self.sorted_dataframe[self.get_parameter()["Seq"]].astype(str).apply(", ".join, axis=1)
         self.aggregated_table["object"] = self.sorted_dataframe[self.get_parameter()["Group"]].astype(str).apply(", ".join, axis=1)
         self.aggregated_table["transitions"] = self.sorted_dataframe[self.get_parameter()["Transitions"]].astype(str).apply(", ".join, axis=1)
         self.aggregated_table["states"] = self.sorted_dataframe[self.get_parameter()["States"]].astype(str).apply(", ".join, axis=1)
         
+        #This fields will be used for build path statistics
         self.transitions_list = []
         self.transitions_dataframe = pd.DataFrame(columns=["transitions"])
         self.stransitions_stats = pd.DataFrame(columns=["TransitionID", "Transition", "Count"])
         
+        #Lists for unique entities to iterate states and transitions
         self.objects = self.aggregated_table["object"].unique()
         self.states = self.aggregated_table["states"].unique()
         self.transitions = self.aggregated_table["transitions"].unique()
         
+        #State-Transitions Graph building
         self.graph = gv.Digraph(name=self.get_parameter()["FilesName"], graph_attr={"concentrate":"true", "imagescale": "true"}, strict=True)
         self.graph.node("START", "START", fontcolor="white", fillcolor="red", style="filled")
         self.graph.node("END", "END", fontcolor="white", fillcolor="red", style="filled")
@@ -98,6 +103,7 @@ class StateTransitionsDiagram(Analysis, ISaveData, IReadConfig):
             self.state_transition = pd.DataFrame([[transition]], columns=["transitions"])
             self.transitions_dataframe = pd.concat([self.transitions_dataframe, self.state_transition]).astype(str)
         
+        #Make path statistics
         self.trans_stat = pd.DataFrame(np.c_[np.unique(self.transitions_dataframe, return_counts=1)], columns=["Transition", "Count"])
         self.trans_stat.index.name = "TransitionID"  
         self.save_results()
