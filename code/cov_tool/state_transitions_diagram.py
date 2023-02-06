@@ -9,10 +9,13 @@ import yaml
 from analysis import Analysis
 from save_data import ISaveData
 from config_reader import IReadConfig
-from data_reader import DataFrameMaker
+from input_processor import DataFrameMaker
 
 
 class StateTransitionsDiagram(Analysis, ISaveData, IReadConfig):
+    '''
+    Realisation of Analysis abstraction for State-Transition Diagrams mod
+    '''
     
     def __init__(self, config: os.PathLike):
         self.config = os.path.join(os.path.dirname(__file__), "configurations", config + ".yaml")
@@ -21,6 +24,9 @@ class StateTransitionsDiagram(Analysis, ISaveData, IReadConfig):
         
 
     def get_parameter(self) -> tuple:
+        '''
+        Get parameters related to the State-Transitions Diagrams mod
+        '''
         with open(self.config) as stream:
             self.config_parsed = yaml.load(stream, yaml.FullLoader) 
             self.config_parameters["SaveTo"] = os.path.join(os.path.dirname(__file__), "output", self.config_parsed["state-transition"]["output_directory"])
@@ -36,6 +42,9 @@ class StateTransitionsDiagram(Analysis, ISaveData, IReadConfig):
         
         
     def save_results(self) -> None:
+        '''
+        Save analysis results
+        '''
         self.graph.render(directory=f"{self.get_parameter()['SaveTo']}", view=False)
         
         with pd.ExcelWriter(f"{os.path.join(self.get_parameter()['SaveTo'], self.get_parameter()['FilesName'])}_stats.xlsx") as writer:
@@ -48,6 +57,9 @@ class StateTransitionsDiagram(Analysis, ISaveData, IReadConfig):
 
     
     def analyse(self) -> None:
+        '''
+        Realisation of analysis method of Analysis abstract class for State-Transitions Diagram mod
+        '''
         self.input_reader = DataFrameMaker(os.path.join(self.get_parameter()["InputDirectory"], self.get_parameter()["Table"]))
         self.dataframe = self.input_reader.create_dataframe(self.get_parameter()["Sheet"])
         
