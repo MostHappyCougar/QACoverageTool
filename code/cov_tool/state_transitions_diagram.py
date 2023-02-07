@@ -17,7 +17,7 @@ class StateTransitionsDiagram(Analysis, ISaveData):
     
     def __init__(self, config):
         self.config_parsed = config["state-transition"]
-        self.output_directory = os.path.join(os.path.dirname(__file__), self.config_parsed["output_directory"])
+        self.output_directory = os.path.join(os.path.dirname(__file__), "output", self.config_parsed["output_directory"])
         
                 
     def save_results(self) -> None:
