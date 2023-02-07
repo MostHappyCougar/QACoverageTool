@@ -4,7 +4,7 @@ import os
 import numpy as np
 
 from state_transitions_diagram import StateTransitionsDiagram
-from config_reader import DefaultConfig, IReadConfig
+from config_reader import IReadConfig
 
 
 class Main(IReadConfig):
@@ -28,7 +28,7 @@ class Main(IReadConfig):
         
         #When no configs specified then use Default Config
         if len(configs) == 0:
-            configs = [DefaultConfig.default_config]
+            configs = [IReadConfig.default_config]
         
         #Foreach config
         for conf in configs:
