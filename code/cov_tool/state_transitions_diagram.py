@@ -9,7 +9,7 @@ import yaml
 from analysis import Analysis
 from save_data import ISaveData
 from config_reader import IReadConfig
-from input_processor import DataFrameMaker
+from input_adapter_std import InputAdapter
 
 
 class StateTransitionsDiagram(Analysis, ISaveData, IReadConfig):
@@ -31,9 +31,6 @@ class StateTransitionsDiagram(Analysis, ISaveData, IReadConfig):
             self.config_parsed = yaml.load(stream, yaml.FullLoader) 
             self.config_parameters["SaveTo"] = os.path.join(os.path.dirname(__file__), "output", self.config_parsed["state-transition"]["output_directory"])
             self.config_parameters["FilesName"] = self.config_parsed["state-transition"]["file_names"]
-            self.config_parameters["InputDirectory"] = os.path.join(os.path.dirname(__file__), self.config_parsed["state-transition"]["input_directory"])
-            self.config_parameters["Table"] = self.config_parsed["state-transition"]["input_table"]
-            self.config_parameters["Sheet"] = self.config_parsed["state-transition"]["input_sheet"]
             self.config_parameters["Seq"] = self.config_parsed["state-transition"]["sequences"]
             self.config_parameters["Group"] = self.config_parsed["state-transition"]["objects"]
             self.config_parameters["Transitions"] = self.config_parsed["state-transition"]["transitions"]
@@ -60,8 +57,8 @@ class StateTransitionsDiagram(Analysis, ISaveData, IReadConfig):
         '''
         Realisation of analysis method of Analysis abstract class for State-Transitions Diagram mod
         '''
-        self.input_reader = DataFrameMaker(os.path.join(self.get_parameter()["InputDirectory"], self.get_parameter()["Table"]))
-        self.dataframe = self.input_reader.create_dataframe(self.get_parameter()["Sheet"])
+        
+        self.dataframe = InputAdapter.DATAFRAME
         
         self.sorted_dataframe = self.dataframe.sort_values([*self.get_parameter()["Group"], *self.get_parameter()["Seq"]])
         self.aggregated_table = pd.DataFrame(columns=["seq", "object", "transitions", "states"])
