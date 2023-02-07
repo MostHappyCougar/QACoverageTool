@@ -13,6 +13,7 @@ class Main(IReadConfig):
     Enter point to the utility
     '''
     
+    
     @staticmethod
     def get_parameter(conf) -> list:
         '''
@@ -43,6 +44,6 @@ class Main(IReadConfig):
                     
                     DataFrameMakerXLSX(path_to_input, get_parameter(conf)["state-transition"]["input_sheet"])
                     
-                    STDiag = StateTransitionsDiagram(conf)
+                    STDiag = StateTransitionsDiagram(get_parameter(conf))
                     STDiag.analyse()
 
