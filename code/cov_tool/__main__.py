@@ -5,12 +5,14 @@ import numpy as np
 
 from state_transitions_diagram import StateTransitionsDiagram
 from config_reader import IReadConfig
+from input_processor_xlsx import DataFrameMakerXLSX
 
 
 class Main(IReadConfig):
     '''
     Enter point to the utility
     '''
+    
     
     @staticmethod
     def get_parameter(conf) -> list:
@@ -19,7 +21,7 @@ class Main(IReadConfig):
         Analysis mods will be applyied to tests based on this parameters list
         '''
         with open(os.path.join(os.path.dirname(__file__), "configurations", conf+".yaml")) as stream:
-            return np.unique(yaml.load(stream, yaml.FullLoader)["analysis-mods"])
+            return yaml.load(stream, yaml.FullLoader)
     
     
     if __name__ == "__main__":
@@ -33,8 +35,15 @@ class Main(IReadConfig):
         #Foreach config
         for conf in configs:
             #Perform analysis according to mods specified
-            for mod in get_parameter(conf):
+            for mod in np.unique(get_parameter(conf)["analysis-mods"]):
                 if mod == "state-transition":
-                    STDiag = StateTransitionsDiagram(conf)
+                    
+                    path_to_input = os.path.join(os.path.dirname(__file__), 
+                                                get_parameter(conf)["state-transition"]["input_directory"], 
+                                                get_parameter(conf)["state-transition"]["input_table"])
+                    
+                    DataFrameMakerXLSX(path_to_input, get_parameter(conf)["state-transition"]["input_sheet"])
+                    
+                    STDiag = StateTransitionsDiagram(get_parameter(conf))
                     STDiag.analyse()
 

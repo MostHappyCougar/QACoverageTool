@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-import os
 
 
 class IReadConfig(ABC):
@@ -10,7 +9,7 @@ class IReadConfig(ABC):
     default_config = "conf_default"
         
     @abstractmethod    
-    def get_parameter(self):
+    def get_parameter(self, conf: str) -> list:
         '''
         Parse configuration and get required parameter
         '''
