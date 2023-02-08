@@ -15,7 +15,7 @@ class Main(IReadConfig):
     
     
     @staticmethod
-    def get_parameter(conf) -> list:
+    def get_conf_params(conf) -> dict:
         '''
         Realization of IReadConfig interface to get list of applicable analysis mods
         Analysis mods will be applyied to tests based on this parameters list
@@ -34,16 +34,13 @@ class Main(IReadConfig):
         
         #Foreach config
         for conf in configs:
+            #Reat config
+            CONF_PARAMS = get_conf_params(conf)
             #Perform analysis according to mods specified
-            for mod in np.unique(get_parameter(conf)["analysis-mods"]):
+            for mod in np.unique(CONF_PARAMS["analysis-mods"]):
                 if mod == "state-transition":
-                    
-                    path_to_input = os.path.join(os.path.dirname(__file__), 
-                                                get_parameter(conf)["state-transition"]["input_directory"], 
-                                                get_parameter(conf)["state-transition"]["input_table"])
-                    
-                    DataFrameMakerXLSX(path_to_input, get_parameter(conf)["state-transition"]["input_sheet"])
-                    
-                    STDiag = StateTransitionsDiagram(get_parameter(conf))
+                    path_to_input = os.path.join(os.path.dirname(__file__), CONF_PARAMS["state-transition"]["input_directory"], CONF_PARAMS["state-transition"]["input_table"])
+                    DataFrameMakerXLSX(path_to_input, CONF_PARAMS["state-transition"]["input_sheet"])
+                    STDiag = StateTransitionsDiagram(CONF_PARAMS)
                     STDiag.analyse()
 
