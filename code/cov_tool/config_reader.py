@@ -9,7 +9,7 @@ class IReadConfig(ABC):
     default_config = "conf_default"
         
     @abstractmethod    
-    def get_conf_params(self, conf: str) -> list:
+    def get_conf_params(self, conf: str) -> None:
         '''
         Parse configuration and get required parameter
         '''
