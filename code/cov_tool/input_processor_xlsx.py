@@ -8,7 +8,10 @@ from input_adapter_std import InputAdapter
 
 class DataFrameMakerXLSX(AInputProcessor):
     '''
-    Concrete class to make dataset from XLSX file
+    Class of Input processor for XLSX documents.
+    At the class instance created following methods is calling:
+    
+    _create_dataframe
     '''
 
     def __init__(self, file: os.PathLike, sheet: str=None):

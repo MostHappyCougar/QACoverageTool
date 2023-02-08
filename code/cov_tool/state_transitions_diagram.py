@@ -12,17 +12,16 @@ from input_adapter_std import InputAdapter
 
 class StateTransitionsDiagram(AAnalysis, ISaveData):
     '''
-    Realisation of Analysis abstraction for State-Transition Diagrams mod
+    Base class for State-Transitions Diagram analysis mod
     '''
     
     def __init__(self, config: dict):
+        super().__init__(config, InputAdapter)
         
         #Read related config fields
-        self.mod_params = config["state-transition"]
         self.output_directory = os.path.join(os.path.dirname(__file__), "output", self.mod_params["output_directory"])
         
         #Get dataframe for analysis and sort it out based on OBJECTS and SEQUENCES fields
-        self.dataframe = InputAdapter.DATAFRAME
         self.sorted_dataframe = self.dataframe.sort_values([*self.mod_params["objects"], *self.mod_params["sequences"]])
         self.aggregated_table = pd.DataFrame(columns=["seq", "object", "transitions", "states"])
         
@@ -49,7 +48,12 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
     
     def analyse(self) -> None:
         '''
-        Realisation of analysis method of Analysis abstract class for State-Transitions Diagram mod
+        State-Transitions analysis execution.
+        This method calls another following methods in following order:
+        
+        _build_graph
+        _path_statistics_gen
+        save_results
         '''
         
         #Make aggregated dataframe from raw sorted input. 
@@ -95,7 +99,7 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
                     
     def _path_statistics_gen(self):
         '''
-        Collect path statistics
+        Collect and processing path statistics
         '''
         
         #Make dataframe of path. No bound to any object will be considered.

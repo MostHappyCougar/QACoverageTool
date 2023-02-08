@@ -39,8 +39,8 @@ class Main(IReadConfig):
             #Perform analysis according to mods specified
             for mod in np.unique(CONF_PARAMS["analysis-mods"]):
                 if mod == "state-transition":
-                    path_to_input = os.path.join(os.path.dirname(__file__), CONF_PARAMS["state-transition"]["input_directory"], CONF_PARAMS["state-transition"]["input_table"])
-                    DataFrameMakerXLSX(path_to_input, CONF_PARAMS["state-transition"]["input_sheet"])
-                    STDiag = StateTransitionsDiagram(CONF_PARAMS)
+                    path_to_input = os.path.join(os.path.dirname(__file__), CONF_PARAMS[mod]["input_directory"], CONF_PARAMS[mod]["input_table"])
+                    DataFrameMakerXLSX(path_to_input, CONF_PARAMS[mod]["input_sheet"])
+                    STDiag = StateTransitionsDiagram(CONF_PARAMS[mod])
                     STDiag.analyse()
 
