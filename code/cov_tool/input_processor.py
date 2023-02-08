@@ -1,6 +1,8 @@
 import os
 from abc import ABC, abstractmethod
 
+from input_adapter import AInputAdapter
+
 
 class AInputProcessor(ABC):
     '''
@@ -9,13 +11,22 @@ class AInputProcessor(ABC):
     
     def __init__(self, file: os.PathLike):
         self.file = file
+        self.dataframe = None
+    
     
     @abstractmethod
-    def _create_dataframe(self):
+    def _create_dataframe(self) -> None:
         '''
-        Just read input file and create dataframe
+        Dataframe creation logic
         '''
         pass
+    
+    
+    def _pass_to_adapter(self, adapter: AInputAdapter) -> None:
+        '''
+        This method must be called to pass dataframe to an adapter
+        '''
+        adapter.DATAFRAME = self.dataframe
 
 
 

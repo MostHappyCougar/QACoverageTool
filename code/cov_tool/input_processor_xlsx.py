@@ -12,6 +12,7 @@ class DataFrameMakerXLSX(AInputProcessor):
     At the class instance created following methods is calling:
     
     _create_dataframe
+    _pass_to_adapter
     '''
 
     def __init__(self, file: os.PathLike, sheet: str=None):
@@ -20,4 +21,5 @@ class DataFrameMakerXLSX(AInputProcessor):
     
     
     def _create_dataframe(self, sheet: str=None) -> None:
-        InputAdapter(pd.read_excel(self.file, sheet))
+        self.dataframe = pd.read_excel(self.file, sheet)
+        super()._pass_to_adapter(InputAdapter)
