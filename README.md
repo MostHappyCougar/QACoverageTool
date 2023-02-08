@@ -22,7 +22,68 @@ $ pip install -r path/to/requirements.txt
 from any work directory
 
 # Usage
-To use this utility you should run `cov_tool` that placed in `/code/` directory of this utility with config name as an argument (without file extension). There may be several configs listed. All configs enumerated in arguments at `cov_tool` starts will be parsed and applied for tests coverage analysis. When no configs listed as agruments then `conf_default.yaml` will be applied. **This config is valid preconfigured for example files.** To chose analysis mods that will be aplied for tests you should enumerate them in `analysis-mods` section of `.yaml` config. There is the list of available analysis mods:
+## Configuration
+Befure utility use you should create and configure a config in `/code/cov_tool/configurations/` directory. There is should be specified a list of analysis mods that will be performed at utility run. Also you can configure each analysis mod in details via mentioned config. There is possible to store several configs and use any count of them individually or together
+
+<details><summary>Config Example</summary>
+
+### This config is prepared for **EXAMPLE.xlsx** stored in `code/cov_tool/tables_to_analisys/`
+
+```yaml
+##############################################
+#ANALYSIS MODS THAT WILL BE APPLIED FOR TESTS#
+#                                            #
+#Applicable mods:                            #
+# - state-transitions                        #
+##############################################
+analysis-mods:
+   - state-transition
+
+
+#########################################
+#DETAIL CONFIGURATIONS FOR ANALYSIS MODS#
+#########################################
+
+#State-transitions diagram
+state-transition:
+   #All generated files will be saved here.
+   output_directory: EXAMPLE
+   file_names: EX_TEST
+   #Table and sheet where data to analysis will be take from
+   input_directory: tables_to_analisys
+   input_table: EXAMPLE.xlsx
+   input_sheet: test
+   
+   #States and transitions will be assigned to object based on these table columns.
+   #When values from objects columns is same for several states/transitions then these states/transitions will be related to this object
+   #You may mention here a several columns. So each unique compination of values of mentioned columns will be considered as one unique object
+   objects:
+      - TestCase
+   
+   #Sequence of transitions and states will be considered based on this field
+   sequences:
+      - StepID
+      
+   #Transitions will be took from these fields
+   #You may mention here a several columns. Each unique combination of values of mentioned columns will be considered as one transition
+   transitions:
+      - Action
+   
+   #States will be took from these fields
+   #You may mention here a several columns. Each unique combination of values from mentioned columns will be considered as one state
+   states:
+      - CountToPlace
+      - CountToCancel
+```
+
+</details>
+
+## Running
+To use this utility you should run `cov_tool` that placed in `/code/` directory of this utility with config name as an argument (without file extension). There may be several configs listed. All configs enumerated in arguments at `cov_tool` starts will be parsed and applied for tests coverage analysis. When no configs listed as agruments then `conf_default.yaml` will be applied. **This config is valid preconfigured for example files.** To chose analysis mods that will be aplied for tests you should enumerate them in `analysis-mods` section of `.yaml` config.
+#### Example: 
+```
+$ python cov_tool conf_default
+```
 
 ## Analysis mods
 1. `state-transition` - state-transitions diagram
@@ -120,8 +181,3 @@ To use this utility you should run `cov_tool` that placed in `/code/` directory 
 		![image](https://user-images.githubusercontent.com/104580123/215318768-4b751ef9-c1bc-45c4-8dd4-91628adac263.png)
 		</details>
 	</details>
-
-#### Example: 
-```
-$ python cov_tool conf_default
-```
