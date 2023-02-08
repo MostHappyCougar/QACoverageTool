@@ -19,6 +19,7 @@ class AInputProcessor(ABC):
         '''
         Dataframe creation logic
         '''
+        pass
     
     
     def _pass_to_adapter(self, adapter: AInputAdapter) -> None:
