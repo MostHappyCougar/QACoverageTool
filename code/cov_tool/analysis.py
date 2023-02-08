@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class Analysis(ABC):
+class AAnalysis(ABC):
     '''
     Abstract class that describes analysis business requirements
     '''

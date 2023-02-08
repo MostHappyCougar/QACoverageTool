@@ -5,12 +5,12 @@ import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
 
-from analysis import Analysis
+from analysis import AAnalysis
 from save_data import ISaveData
 from input_adapter_std import InputAdapter
 
 
-class StateTransitionsDiagram(Analysis, ISaveData):
+class StateTransitionsDiagram(AAnalysis, ISaveData):
     '''
     Realisation of Analysis abstraction for State-Transition Diagrams mod
     '''

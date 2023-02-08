@@ -15,7 +15,7 @@ class Main(IReadConfig):
     
     
     @staticmethod
-    def get_conf_params(conf) -> list:
+    def get_conf_params(conf) -> dict:
         '''
         Realization of IReadConfig interface to get list of applicable analysis mods
         Analysis mods will be applyied to tests based on this parameters list
