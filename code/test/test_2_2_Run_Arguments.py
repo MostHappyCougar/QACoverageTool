@@ -17,7 +17,7 @@ class TestPositive:
         #Read Global Parameters
         _global_parameters = read_global.GlobalConfig()
         #Output files list
-        _output_files_list = ["2_2_2_Positive_stats_vis.pdf", "2_2_2_Positive_stats.xlsx", "2_2_2_Positive.gv", "2_2_2_Positive.gv.pdf"]
+        _output_files_list = ["2_2_2_Positive_path_stats_vis.pdf", "2_2_2_Positive_path_stats.xlsx", "2_2_2_Positive.gv", "2_2_2_Positive.gv.pdf"]
         _output_files_list_empty_config = ["EX_TEST_stats_vis.pdf", "EX_TEST_stats.xlsx", "EX_TEST.gv", "EX_TEST.gv.pdf"]
         
         #Path to output directory
