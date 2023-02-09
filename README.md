@@ -1,4 +1,4 @@
-[![Regression Testing UBUNTU](https://github.com/MostHappyCougar/QACoverageTool/actions/workflows/python-app.yml/badge.svg?branch=ready_to_test)](https://github.com/MostHappyCougar/QACoverageTool/actions/workflows/python-app.yml)
+[![Regression Testing UBUNTU](https://github.com/MostHappyCougar/QACoverageTool/actions/workflows/regression-ubuntu.yml/badge.svg?branch=ready_to_test)](https://github.com/MostHappyCougar/QACoverageTool/actions/workflows/regression-ubuntu.yml)
 # Description
 Utility to perform tests coverage analysis based on `xlsx` tables e.g scenarios, test cases or download of system states. This utility is applicable for documents with structure that correlate to the analysis mode. 
 
