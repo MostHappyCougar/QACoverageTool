@@ -26,7 +26,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install -r requirements.txt
-        brew install graphviz
+        choco install graphviz
         pip install allure-pytest
     - name: Lint with flake8
       run: |
