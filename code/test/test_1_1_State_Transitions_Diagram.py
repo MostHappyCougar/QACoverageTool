@@ -49,10 +49,9 @@ class TestStateTransitions():
             with allure.step("Validations"):
                 with allure.step("Artifacts"):
                     with allure.step("Return Code"):
+                        print(_actual_artifacts["STDERR"].decode())
                         assert 0 == _actual_artifacts["ReturnCode"]
                     with allure.step("STDOUT"):
-                        print('\r\n'+_expected_artifacts.read()["stdout"]["positive_1_1_1"]+_out_path+'\r\n')
-                        print(_actual_artifacts["STDOUT"].decode())
                         assert '\r\n'+_expected_artifacts.read()["stdout"]["positive_1_1_1"]+_out_path+'\r\n' == _actual_artifacts["STDOUT"].decode()
                     with allure.step("STDERR"):
                         assert _expected_artifacts.read()["stderr"]["positive_1_1_1"] == _actual_artifacts["STDERR"].decode()

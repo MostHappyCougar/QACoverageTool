@@ -39,6 +39,7 @@ class TestPositive:
                 
         with allure.step("Run utility"):
             user_actions.User().try_to_run(run_arguments)
+            print(_actual_artifacts["STDERR"].decode())
             
         with allure.step("Postconditions"):
                 with allure.step("Flush output files and validate if there was generated"):
