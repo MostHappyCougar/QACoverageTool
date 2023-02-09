@@ -24,10 +24,9 @@ jobs:
       working-directory: ./code/cov_tool
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest
-        pip install -r requirements.txt
-        winget install graphviz
-        pip install allure-pytest
+        pip3 install flake8 pytest
+        pip3 install -r requirements.txt
+        pip3 install allure-pytest
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
