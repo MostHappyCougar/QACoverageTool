@@ -38,7 +38,7 @@ class TestPositive:
                     _output_files_s.remove_files(files=_output_files_list)
                 
         with allure.step("Run utility"):
-            user_actions.User().try_to_run(run_arguments)
+            _actual_artifacts = user_actions.User().try_to_run(run_arguments)
             print(_actual_artifacts["STDERR"].decode())
             
         with allure.step("Postconditions"):
