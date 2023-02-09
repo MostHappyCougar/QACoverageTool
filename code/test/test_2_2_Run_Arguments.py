@@ -32,7 +32,7 @@ class TestPositive:
             with allure.step("Flush output"):
                 if case_id:
                     _out_files_empty = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", case_id)
-                    print(_out_files_empty)
+                    print('Test:', _out_files_empty)
                     _output_files_e = output_manager.FilesManagement(_out_files_empty)
                     _output_files_e.remove_files(files=_output_files_list)
                 else:
