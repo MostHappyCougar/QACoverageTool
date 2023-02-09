@@ -52,9 +52,8 @@ class TestStateTransitions():
                         print(_actual_artifacts["STDERR"].decode())
                         assert 0 == _actual_artifacts["ReturnCode"]
                     with allure.step("STDOUT"):
-                        _exp_message_byte = ('\r\n'+_expected_artifacts.read()["stdout"]["positive_1_1_1"]+_out_path+'\r\n').encode()
-                        
-                        assert _exp_message_byte.decode() == _actual_artifacts["STDOUT"].decode()
+                        _exp_message = '\n'+_expected_artifacts.read()["stdout"]["positive_1_1_1"]+_out_path+'\n'
+                        assert _exp_message == _actual_artifacts["STDOUT"].decode().replace('\r', '')
                     with allure.step("STDERR"):
                         assert _expected_artifacts.read()["stderr"]["positive_1_1_1"] == _actual_artifacts["STDERR"].decode()
                 with allure.step("Output Files"):
