@@ -1,7 +1,9 @@
-from common_methods import user_actions, output_manager, read_global
 import os
 import allure
 import pytest
+
+from common_methods import user_actions, output_manager
+from common_methods import GLOBAL
 
 @allure.parent_suite("1_Analysis_Mods")
 @allure.suite("1_1_State-Transitions_Diagram")
@@ -18,21 +20,21 @@ class TestStateTransitions():
                                                         (["TEST/std_case_5"], "std_case5")])
     def test_StateTransitions(self, config, expected_files) -> None:
         #The list of expected files at the utility execution complete
-        _output_files_list = ["1_1_1_Positive_path_stats_vis.pdf", "1_1_1_Positive_path_stats.xlsx", "1_1_1_Positive.gv", "1_1_1_Positive.gv.pdf"]
-        
-        #Get global parameters for this test
-        _global_parameters = read_global.GlobalConfig()
+        _output_files_list = ["1_1_1_Positive_path_stats_vis.pdf", "1_1_1_Positive_path_stats.xlsx", "1_1_1_Positive.gv", "1_1_1_Positive.gv.pdf"] 
+        _full_path_to_main = os.path.abspath(os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, ".."))
+        _out_path = os.path.join(_full_path_to_main, "code", "cov_tool", "output", "1_1_1_Positive")
         
         #Spected rtifacts at utility execution complete
         _expected_artifacts = output_manager.ExpectedSTDMessages()
         
         #Expected output files
-        _relative_path_to_expected_files = os.path.join(_global_parameters.get_params()["relative_path"]["from_test_to_expected"], expected_files)
+        _relative_path_to_expected_files = os.path.join(GLOBAL.GLOBAL.path_from_test_to_expected, expected_files)
         _expected_output_files = output_manager.FilesManagement(_relative_path_to_expected_files)
         
         #Actual output files
-        _path_to_output_files = os.path.join(_global_parameters.get_params()["relative_path"]["from_test_to_utility"], "output", "1_1_1_Positive")        
+        _path_to_output_files = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", "1_1_1_Positive")        
         _output_files = output_manager.FilesManagement(_path_to_output_files)
+        
         
         with allure.step("Preconditions"):
             with allure.step("Flush output"): 
@@ -49,7 +51,9 @@ class TestStateTransitions():
                     with allure.step("Return Code"):
                         assert 0 == _actual_artifacts["ReturnCode"]
                     with allure.step("STDOUT"):
-                        assert '\r\n'+_expected_artifacts.read()["stdout"]["positive_1_1_1"]+'\r\n' == _actual_artifacts["STDOUT"].decode()
+                        print('\r\n'+_expected_artifacts.read()["stdout"]["positive_1_1_1"]+_out_path+'\r\n')
+                        print(_actual_artifacts["STDOUT"].decode())
+                        assert '\r\n'+_expected_artifacts.read()["stdout"]["positive_1_1_1"]+_out_path+'\r\n' == _actual_artifacts["STDOUT"].decode()
                     with allure.step("STDERR"):
                         assert _expected_artifacts.read()["stderr"]["positive_1_1_1"] == _actual_artifacts["STDERR"].decode()
                 with allure.step("Output Files"):
