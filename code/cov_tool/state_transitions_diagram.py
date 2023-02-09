@@ -19,7 +19,8 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
         super().__init__(config, InputAdapter)
         
         #Read related config fields
-        self.output_directory = os.path.join(os.path.dirname(__file__), "output", self.mod_params["output_directory"])
+        #Get absolute path to the output directory
+        self.output_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), "output", self.mod_params["output_directory"]))
         
         #Get dataframe for analysis and sort it out based on OBJECTS and SEQUENCES fields
         self.sorted = self.dataframe.sort_values([*self.mod_params["objects"], *self.mod_params["sequences"]])
@@ -49,11 +50,11 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
         self.graph.render(directory=f"{self.output_directory}", view=False)
         
         with pd.ExcelWriter(f"{os.path.join(self.output_directory, self.mod_params['file_names'])}_path_stats.xlsx") as writer:
-            self.transition_statistics.to_excel(writer, "PathStatistics")
+            self.path_statistics.to_excel(writer, "PathStatistics")
 
         fig, (ax1) = plt.subplots()
         ax1.set(title="Path frequency by PathID")
-        ax1.pie(x=self.transition_statistics["Count"], labels=self.transition_statistics.index, autopct='%1.1f%%')
+        ax1.pie(x=self.path_statistics["Count"], labels=self.path_statistics.index, autopct='%1.1f%%')
         plt.savefig(f"{os.path.join(self.output_directory, self.mod_params['file_names'])}_path_stats_vis.pdf")
 
     
@@ -107,8 +108,8 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
             self.path_dataframe = pd.concat([self.path_dataframe, self.listed_path]).astype(str)
         
         #Make path statistics
-        self.transition_statistics = pd.DataFrame(np.c_[np.unique(self.path_dataframe, return_counts=1)], columns=["Path", "Count"])
-        self.transition_statistics.index.name = "PathID" 
+        self.path_statistics = pd.DataFrame(np.c_[np.unique(self.path_dataframe, return_counts=1)], columns=["Path", "Count"])
+        self.path_statistics.index.name = "PathID" 
         
     
     def _transform_dateframe_before_analysis(self) -> None:
