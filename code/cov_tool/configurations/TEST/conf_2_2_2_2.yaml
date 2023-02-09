@@ -16,7 +16,7 @@ analysis-mods:
 #State-transitions diagram
 state-transition:
    #All generated files will be saved here.
-   output_directory: 2_2_2_Positive\case_2
+   output_directory: 2_2_2_Positive/case_2
    file_names: 2_2_2_Positive
    #Table and sheet where data to analysis will be take from
    input_directory: tables_to_analisys

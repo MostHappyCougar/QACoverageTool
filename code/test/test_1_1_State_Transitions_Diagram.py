@@ -22,7 +22,7 @@ class TestStateTransitions():
         #The list of expected files at the utility execution complete
         _output_files_list = ["1_1_1_Positive_path_stats_vis.pdf", "1_1_1_Positive_path_stats.xlsx", "1_1_1_Positive.gv", "1_1_1_Positive.gv.pdf"] 
         _full_path_to_main = os.path.abspath(os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, ".."))
-        _out_path = os.path.join(_full_path_to_main, "code", "cov_tool", "output", "1_1_1_Positive")
+        _out_path = os.path.abspath(os.path.join(_full_path_to_main, "code", "cov_tool", "output", "1_1_1_Positive"))
         
         #Spected rtifacts at utility execution complete
         _expected_artifacts = output_manager.ExpectedSTDMessages()
@@ -49,11 +49,11 @@ class TestStateTransitions():
             with allure.step("Validations"):
                 with allure.step("Artifacts"):
                     with allure.step("Return Code"):
+                        print(_actual_artifacts["STDERR"].decode())
                         assert 0 == _actual_artifacts["ReturnCode"]
                     with allure.step("STDOUT"):
-                        print('\r\n'+_expected_artifacts.read()["stdout"]["positive_1_1_1"]+_out_path+'\r\n')
-                        print(_actual_artifacts["STDOUT"].decode())
-                        assert '\r\n'+_expected_artifacts.read()["stdout"]["positive_1_1_1"]+_out_path+'\r\n' == _actual_artifacts["STDOUT"].decode()
+                        _exp_message = '\n'+_expected_artifacts.read()["stdout"]["positive_1_1_1"]+_out_path+'\n'
+                        assert _exp_message == _actual_artifacts["STDOUT"].decode().replace('\r', '')
                     with allure.step("STDERR"):
                         assert _expected_artifacts.read()["stderr"]["positive_1_1_1"] == _actual_artifacts["STDERR"].decode()
                 with allure.step("Output Files"):

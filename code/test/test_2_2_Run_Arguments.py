@@ -1,8 +1,9 @@
 import os
 import allure
 import pytest
+import time
 
-from common_methods import user_actions, output_manager, read_global
+from common_methods import user_actions, output_manager
 from common_methods import GLOBAL
 
 @allure.parent_suite("2_Configurations")
@@ -13,7 +14,9 @@ from common_methods import GLOBAL
 @allure.severity(allure.severity_level.TRIVIAL)
 class TestPositive:
     
-    @pytest.mark.parametrize('case_id, run_arguments', [(None, [r"TEST\conf_2_2_2_1", r"TEST\conf_2_2_2_2"]),
+    os.path.join("TEST", "conf_2_2_2_1")
+    
+    @pytest.mark.parametrize('case_id, run_arguments', [(None, [os.path.join("TEST", "conf_2_2_2_1"), os.path.join("TEST", "conf_2_2_2_2")]),
                                                         ("EXAMPLE", [])])
     def test_RunAgruments(self, case_id, run_arguments):
         
@@ -38,9 +41,11 @@ class TestPositive:
                     _output_files_s.remove_files(files=_output_files_list)
                 
         with allure.step("Run utility"):
-            user_actions.User().try_to_run(run_arguments)
-            
+            _actual_artifacts = user_actions.User().try_to_run(run_arguments)
+            print(_actual_artifacts["STDERR"].decode())
+
         with allure.step("Postconditions"):
+                time.sleep(1)
                 with allure.step("Flush output files and validate if there was generated"):
                     if run_arguments:
                         with allure.step("Output of FIRST config"):
@@ -50,7 +55,7 @@ class TestPositive:
                     else:
                         with allure.step("Empty Config"):
                             _output_files_e.remove_files(files=_output_files_list_empty_config, validate=True)
-                            
+
                         
 
             
