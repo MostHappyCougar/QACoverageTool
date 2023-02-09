@@ -1,16 +1,16 @@
 import subprocess as sp
 import pytest
-from common_methods import read_global
 import os
+
+from common_methods import GLOBAL
 
 class User(object):
     '''
     Main user actions. It is usefull to emulate user actions related to the utility
     '''
     #Read global parameters
-    _global = read_global.GlobalConfig().get_params()
     _this_file = os.path.dirname(__file__)
-    _path_to_enter_point = os.path.join(_this_file, _global["relative_path"]["from_test_to_utility"], _global["scripts"]["enter_point"])
+    _path_to_enter_point = os.path.join(_this_file, GLOBAL.GLOBAL.path_from_test_to_util, GLOBAL.GLOBAL.enter_point)
     
     
     def __init__(self, utility:str=_path_to_enter_point):
