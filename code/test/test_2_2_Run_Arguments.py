@@ -2,7 +2,7 @@ import os
 import allure
 import pytest
 
-from common_methods import user_actions, output_manager, read_global
+from common_methods import user_actions, output_manager
 from common_methods import GLOBAL
 
 @allure.parent_suite("2_Configurations")
