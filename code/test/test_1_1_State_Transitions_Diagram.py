@@ -18,7 +18,7 @@ class TestStateTransitions():
                                                         (["TEST/std_case_5"], "std_case5")])
     def test_StateTransitions(self, config, expected_files) -> None:
         #The list of expected files at the utility execution complete
-        _output_files_list = ["1_1_1_Positive_stats_vis.pdf", "1_1_1_Positive_stats.xlsx", "1_1_1_Positive.gv", "1_1_1_Positive.gv.pdf"]
+        _output_files_list = ["1_1_1_Positive_path_stats_vis.pdf", "1_1_1_Positive_path_stats.xlsx", "1_1_1_Positive.gv", "1_1_1_Positive.gv.pdf"]
         
         #Get global parameters for this test
         _global_parameters = read_global.GlobalConfig()
@@ -56,8 +56,8 @@ class TestStateTransitions():
                     for file in ["1_1_1_Positive.gv"]:
                         with allure.step(f"Compare {file}"):
                             assert _expected_output_files.read_file(file) == _output_files.read_file(file)
-                    with allure.step("Compare 1_1_1_Positive_stats.xlsx"):
-                        assert True == _expected_output_files.read_table("1_1_1_Positive_stats.xlsx").compare(_output_files.read_table("1_1_1_Positive_stats.xlsx")).empty
+                    with allure.step(f"Compare {_output_files_list[1]}"):
+                        assert True == _expected_output_files.read_table(_output_files_list[1]).compare(_output_files.read_table(_output_files_list[1])).empty
         finally:
             with allure.step("Postconditions"):
                 with allure.step("Flush output files and validate if there was generated"):
