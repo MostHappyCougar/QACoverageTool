@@ -22,7 +22,7 @@ class TestStateTransitions():
         #The list of expected files at the utility execution complete
         _output_files_list = ["1_1_1_Positive_path_stats_vis.pdf", "1_1_1_Positive_path_stats.xlsx", "1_1_1_Positive.gv", "1_1_1_Positive.gv.pdf"] 
         _full_path_to_main = os.path.abspath(os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, ".."))
-        _out_path = os.path.join(_full_path_to_main, "code", "cov_tool", "output", "1_1_1_Positive")
+        _out_path = os.path.abspath(os.path.join(_full_path_to_main, "code", "cov_tool", "output", "1_1_1_Positive"))
         
         #Spected rtifacts at utility execution complete
         _expected_artifacts = output_manager.ExpectedSTDMessages()
