@@ -25,12 +25,14 @@ class TestPositive:
         
         #Path to output directory
         _path_to_out_f = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", "2_2_2_Positive", "case_1")
+        print(_path_to_out_f)
         _path_to_out_s = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", "2_2_2_Positive", "case_2")      
                
         with allure.step("Preconditions"):
             with allure.step("Flush output"):
                 if case_id:
                     _out_files_empty = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", case_id)
+                    print(_out_files_empty)
                     _output_files_e = output_manager.FilesManagement(_out_files_empty)
                     _output_files_e.remove_files(files=_output_files_list)
                 else:
