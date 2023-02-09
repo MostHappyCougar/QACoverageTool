@@ -1,6 +1,7 @@
 import os
 import allure
 import pytest
+import time
 
 from common_methods import user_actions, output_manager
 from common_methods import GLOBAL
@@ -25,14 +26,12 @@ class TestPositive:
         
         #Path to output directory
         _path_to_out_f = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", "2_2_2_Positive", "case_1")
-        print(_path_to_out_f)
         _path_to_out_s = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", "2_2_2_Positive", "case_2")      
                
         with allure.step("Preconditions"):
             with allure.step("Flush output"):
                 if case_id:
                     _out_files_empty = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", case_id)
-                    print('Test:', _out_files_empty)
                     _output_files_e = output_manager.FilesManagement(_out_files_empty)
                     _output_files_e.remove_files(files=_output_files_list)
                 else:
@@ -44,8 +43,9 @@ class TestPositive:
         with allure.step("Run utility"):
             _actual_artifacts = user_actions.User().try_to_run(run_arguments)
             print(_actual_artifacts["STDERR"].decode())
-            
+
         with allure.step("Postconditions"):
+                time.sleep(1)
                 with allure.step("Flush output files and validate if there was generated"):
                     if run_arguments:
                         with allure.step("Output of FIRST config"):
@@ -55,7 +55,7 @@ class TestPositive:
                     else:
                         with allure.step("Empty Config"):
                             _output_files_e.remove_files(files=_output_files_list_empty_config, validate=True)
-                            
+
                         
 
             
