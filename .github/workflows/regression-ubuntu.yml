@@ -1,8 +1,10 @@
 name: Regression Testing UBUNTU
 
 on:
-  push:
-    branches: [ "ready_to_test" ]
+  #push:
+    #branches: [ "ready_to_test" ]
+  pull_request: 
+    branches: [ "prod" ]
 
 permissions:
   contents: read
