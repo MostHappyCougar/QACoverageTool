@@ -1,4 +1,4 @@
-name: Regression Testing WINDOWS
+name: RegressionWINDOWS
 
 on:
   push:
