@@ -1,8 +1,8 @@
 name: Regression Testing WINDOWS
 
 on:
-  #push:
-    #branches: [ "ready_to_test" ]
+  push:
+    branches: [ "ready_to_test" ]
   pull_request: 
     branches: [ "prod" ]
 
@@ -27,7 +27,7 @@ jobs:
         pip3 install flake8 pytest
         conda install graphviz
         pip3 install -r requirements.txt
-        set PATH=%PATH%;/opt/hostedtoolcache/Python/3.10.9/x64/lib/python3.10/site-packages/graphviz/
+        set PATH=%PATH%;C:/Miniconda/library/bin/graphviz/
         pip3 install allure-pytest
     - name: Lint with flake8
       run: |
