@@ -31,9 +31,8 @@ jobs:
         pip3 install allure-pytest
         conda install graphviz
     - name: Check Conda
-      working-directory: /usr/share/miniconda/bin
+      working-directory: /usr/share
       run: |
-        ls -la
         whereis graphviz
         whereis Graphviz
     - name: Lint with flake8
