@@ -23,18 +23,11 @@ jobs:
     - name: Install dependencies
       working-directory: ./code/cov_tool
       run: |
-        export PATH=$PATH:/usr/share/miniconda/pkgs/graphviz-2.50.0-h3cd0ef9_0/bin
-        echo $PATH
         #python -m pip install --upgrade pip
         pip3 install flake8 pytest
         pip3 install -r requirements.txt
         pip3 install allure-pytest
-        conda install graphviz
-    - name: Check Conda
-      working-directory: /usr/share/miniconda/pkgs/graphviz-2.50.0-h3cd0ef9_0/bin
-      run: |
-        #conda list
-        ls -la
+        sudo apt-get install graphviz
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
