@@ -28,7 +28,7 @@ jobs:
         conda install graphviz
         pip3 install -r requirements.txt
         conda info
-        set PATH=%PATH%;usr/share/miniconda/
+        set PATH=%PATH%;\usr\share\miniconda\
         pip3 install allure-pytest
     - name: Lint with flake8
       run: |
