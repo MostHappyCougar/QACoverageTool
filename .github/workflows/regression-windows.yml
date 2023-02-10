@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       working-directory: ./code/cov_tool
       run: |
-        echo %PATH%
+        echo $PATH
         python -m pip install --upgrade pip
         pip3 install flake8 pytest
         pip3 install -r requirements.txt
