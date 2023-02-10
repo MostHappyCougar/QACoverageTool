@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       working-directory: ./code/cov_tool
       run: |
-        export PATH=$PATH:/usr/share/miniconda/
+        export PATH=$PATH:/usr/share/miniconda/pkgs/graphviz-2.50.0-h3cd0ef9_0/bin
         echo $PATH
         #python -m pip install --upgrade pip
         pip3 install flake8 pytest
