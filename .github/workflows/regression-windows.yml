@@ -33,7 +33,7 @@ jobs:
     - name: Check Conda
       working-directory: /usr/share
       run: |
-        conda list -p
+        conda list
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
