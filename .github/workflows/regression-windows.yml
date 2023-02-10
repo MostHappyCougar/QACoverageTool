@@ -31,7 +31,7 @@ jobs:
         pip3 install allure-pytest
         conda install graphviz
     - name: Check Conda
-      working-directory: /usr/share/miniconda/pkgs/graphviz-2.50.0-h3cd0ef9_0
+      working-directory: /usr/share/miniconda/pkgs/graphviz-2.50.0-h3cd0ef9_0/bin
       run: |
         #conda list
         ls -la
