@@ -20,18 +20,19 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
-    - name: Check Conda
-      working-directory: /usr/share/miniconda/bin
-      run: ls -la
     - name: Install dependencies
       working-directory: ./code/cov_tool
       run: |
         export PATH=$PATH:/usr/share/miniconda/
         echo $PATH
-        python -m pip install --upgrade pip
+        #python -m pip install --upgrade pip
         pip3 install flake8 pytest
         pip3 install -r requirements.txt
         pip3 install allure-pytest
+        conda install python-graphviz
+    - name: Check Conda
+      working-directory: /usr/share/miniconda/bin
+      run: ls -la
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
