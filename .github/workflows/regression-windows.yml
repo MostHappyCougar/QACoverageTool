@@ -2,7 +2,7 @@ name: Regression Testing WINDOWS
 
 on:
   push:
-    branches: [ "ready_to_test" ]
+    branches: [ "ready_to_test", "prod" ]
   pull_request: 
     branches: [ "prod" ]
 
