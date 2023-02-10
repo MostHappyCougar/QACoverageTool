@@ -1,6 +1,7 @@
 ### PROD status
 [![Regression Testing UBUNTU](https://github.com/MostHappyCougar/QACoverageTool/actions/workflows/regression-ubuntu.yml/badge.svg?branch=prod)](https://github.com/MostHappyCougar/QACoverageTool/actions/workflows/regression-ubuntu.yml)
 [![Regression Testing WINDOWS](https://github.com/MostHappyCougar/QACoverageTool/actions/workflows/regression-windows.yml/badge.svg?branch=prod&event=pull_request)](https://github.com/MostHappyCougar/QACoverageTool/actions/workflows/regression-windows.yml)
+[![CodeFactor](https://www.codefactor.io/repository/github/mosthappycougar/qacoveragetool/badge)](https://www.codefactor.io/repository/github/mosthappycougar/qacoveragetool)
 # Description
 Utility to perform tests coverage analysis based on `xlsx` tables e.g scenarios, test cases or download of system states. This utility is applicable for documents with structure that correlate to the analysis mode. 
 
