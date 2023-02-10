@@ -23,13 +23,10 @@ jobs:
     - name: Install dependencies
       working-directory: ./code/cov_tool
       run: |
+        echo %PATH%
         python -m pip install --upgrade pip
         pip3 install flake8 pytest
-        conda install graphviz
         pip3 install -r requirements.txt
-        conda info
-        echo %PATH%
-        set PATH=%PATH%;/usr/share/miniconda
         pip3 install allure-pytest
     - name: Lint with flake8
       run: |
