@@ -32,7 +32,9 @@ jobs:
         conda install graphviz
     - name: Check Conda
       working-directory: /usr/share/miniconda/bin
-      run: ls -la
+      run: |
+        ls -la
+        whereis dot.exe
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
