@@ -2,8 +2,8 @@ import os
 
 import pandas as pd
 
-from input_processor import AInputProcessor
-from input_adapter_std import InputAdapter
+from abstractions.input_processor import AInputProcessor
+from input_adapters.input_adapter_std import InputAdapter
 
 
 class DataFrameMakerXLSX(AInputProcessor):

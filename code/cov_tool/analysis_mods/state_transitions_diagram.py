@@ -5,9 +5,9 @@ import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
 
-from analysis import AAnalysis
-from save_data import ISaveData
-from input_adapter_std import InputAdapter
+from abstractions.analysis import AAnalysis
+from abstractions.save_data import ISaveData
+from input_adapters.input_adapter_std import InputAdapter
 
 
 class StateTransitionsDiagram(AAnalysis, ISaveData):
@@ -18,7 +18,7 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
     def __init__(self, mod_params: dict):
         super().__init__(mod_params, InputAdapter)
         
-        self.output_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), "output", self.mod_params["output_directory"]))
+        self.output_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "output", self.mod_params["output_directory"]))
         
         self.sorted = self.dataframe.sort_values([*self.mod_params["objects"], *self.mod_params["sequences"]])
         self.transformed = pd.DataFrame(columns=["seq", "object", "transitions", "states"])

@@ -1,6 +1,6 @@
 import pandas as pd
 
-from input_adapter import AInputAdapter
+from abstractions.input_adapter import AInputAdapter
 
 
 class InputAdapter(AInputAdapter):
