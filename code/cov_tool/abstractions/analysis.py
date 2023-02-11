@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from input_adapter import AInputAdapter
+from abstractions.input_adapter import AInputAdapter
 
 
 class AAnalysis(ABC):
