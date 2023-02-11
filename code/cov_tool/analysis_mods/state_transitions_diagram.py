@@ -18,13 +18,13 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
     def __init__(self, mod_params: dict):
         super().__init__(mod_params, InputAdapter)
         
-        self.output_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "output", self.mod_params["output_directory"]))
+        self.output_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "output", self._mod_params["output_directory"]))
         
-        self.sorted = self.dataframe.sort_values([*self.mod_params["objects"], *self.mod_params["sequences"]])
+        self.sorted = self._dataframe.sort_values([*self._mod_params["objects"], *self._mod_params["sequences"]])
         self.transformed = pd.DataFrame(columns=["seq", "object", "transitions", "states"])
         
         #Common Graph Nodes
-        self.graph = gv.Digraph(name=self.mod_params["file_names"], graph_attr={"concentrate":"true", "imagescale": "true"}, strict=True)
+        self.graph = gv.Digraph(name=self._mod_params["file_names"], graph_attr={"concentrate":"true", "imagescale": "true"}, strict=True)
         self.graph.node("START", "START", fontcolor="white", fillcolor="red", style="filled")
         self.graph.node("END", "END", fontcolor="white", fillcolor="red", style="filled")
         
@@ -64,10 +64,10 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
         list of all values of enlisted columns must be considered as single instance per dataframe index foreach parameter
         '''
         
-        self.transformed["seq"] = self.sorted[self.mod_params["sequences"]].astype(str).apply(", ".join, axis=1)
-        self.transformed["object"] = self.sorted[self.mod_params["objects"]].astype(str).apply(", ".join, axis=1)
-        self.transformed["transitions"] = self.sorted[self.mod_params["transitions"]].astype(str).apply(", ".join, axis=1)
-        self.transformed["states"] = self.sorted[self.mod_params["states"]].astype(str).apply(", ".join, axis=1)
+        self.transformed["seq"] = self.sorted[self._mod_params["sequences"]].astype(str).apply(", ".join, axis=1)
+        self.transformed["object"] = self.sorted[self._mod_params["objects"]].astype(str).apply(", ".join, axis=1)
+        self.transformed["transitions"] = self.sorted[self._mod_params["transitions"]].astype(str).apply(", ".join, axis=1)
+        self.transformed["states"] = self.sorted[self._mod_params["states"]].astype(str).apply(", ".join, axis=1)
         
         self.objects_unique = self.transformed["object"].unique()
         self.states_unique = self.transformed["states"].unique()
@@ -113,13 +113,13 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
     def save_results(self) -> None:        
         self.graph.render(directory=f"{self.output_directory}", view=False)
         
-        with pd.ExcelWriter(f"{os.path.join(self.output_directory, self.mod_params['file_names'])}_path_stats.xlsx") as writer:
+        with pd.ExcelWriter(f"{os.path.join(self.output_directory, self._mod_params['file_names'])}_path_stats.xlsx") as writer:
             self.path_stats.to_excel(writer, "PathStatistics")
 
         fig, (ax1) = plt.subplots()
         ax1.set(title="Path frequency by PathID")
         ax1.pie(x=self.path_stats["Count"], labels=self.path_stats.index, autopct='%1.1f%%')
-        plt.savefig(f"{os.path.join(self.output_directory, self.mod_params['file_names'])}_path_stats_vis.pdf")
+        plt.savefig(f"{os.path.join(self.output_directory, self._mod_params['file_names'])}_path_stats_vis.pdf")
         
         
         

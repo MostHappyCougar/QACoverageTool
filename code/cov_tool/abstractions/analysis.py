@@ -8,9 +8,9 @@ class AAnalysis(ABC):
     Abstract class that describes analysis business requirements
     '''
     
-    def __init__(self, config: dict, adapter: AInputAdapter):
-        self.mod_params = config
-        self.dataframe = adapter.DATAFRAME
+    def __init__(self, mod_params: dict, adapter: AInputAdapter):
+        self._mod_params = mod_params
+        self._dataframe = adapter.DATAFRAME
     
     @abstractmethod
     def analyse(self) -> None:
