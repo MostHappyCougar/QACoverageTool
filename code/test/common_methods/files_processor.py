@@ -40,7 +40,7 @@ class YAMLReader(AFileManager, IReadFile):
         
     def read_file(self, file: str) -> tuple:
         with open(os.path.join(self.path_to_files, file)) as stream:
-            return yaml.load(stream, yaml.SafeLoader)
+            return yaml.load(stream, Loader=yaml.SafeLoader)
         
         
         
