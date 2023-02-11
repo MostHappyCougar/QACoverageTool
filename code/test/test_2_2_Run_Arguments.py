@@ -3,7 +3,7 @@ import allure
 import pytest
 import time
 
-from common_methods import user_actions, output_manager
+from common_methods import user, files_processor
 from common_methods import GLOBAL
 
 @allure.parent_suite("2_Configurations")
@@ -32,16 +32,16 @@ class TestPositive:
             with allure.step("Flush output"):
                 if case_id:
                     _out_files_empty = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", case_id)
-                    _output_files_e = output_manager.FilesManagement(_out_files_empty)
-                    _output_files_e.remove_files(files=_output_files_list)
+                    _output_files_e = files_processor.OutputManager(_out_files_empty)
+                    _output_files_e.delete_files(files=_output_files_list)
                 else:
-                    _output_files_f = output_manager.FilesManagement(_path_to_out_f)
-                    _output_files_s = output_manager.FilesManagement(_path_to_out_s) 
-                    _output_files_f.remove_files(files=_output_files_list)
-                    _output_files_s.remove_files(files=_output_files_list)
+                    _output_files_f = files_processor.OutputManager(_path_to_out_f)
+                    _output_files_s = files_processor.OutputManager(_path_to_out_s) 
+                    _output_files_f.delete_files(files=_output_files_list)
+                    _output_files_s.delete_files(files=_output_files_list)
                 
         with allure.step("Run utility"):
-            _actual_artifacts = user_actions.User().try_to_run(run_arguments)
+            _actual_artifacts = user.User().try_to_get_exit_artifacts(run_arguments)
             print(_actual_artifacts["STDERR"].decode())
 
         with allure.step("Postconditions"):
@@ -49,12 +49,12 @@ class TestPositive:
                 with allure.step("Flush output files and validate if there was generated"):
                     if run_arguments:
                         with allure.step("Output of FIRST config"):
-                            _output_files_f.remove_files(files=_output_files_list, validate=True)
+                            _output_files_f.delete_files(files=_output_files_list, fail_if_absence=True)
                         with allure.step("Output of SECOND config"):
-                            _output_files_s.remove_files(files=_output_files_list, validate=True)
+                            _output_files_s.delete_files(files=_output_files_list, fail_if_absence=True)
                     else:
                         with allure.step("Empty Config"):
-                            _output_files_e.remove_files(files=_output_files_list_empty_config, validate=True)
+                            _output_files_e.delete_files(files=_output_files_list_empty_config, fail_if_absence=True)
 
                         
 

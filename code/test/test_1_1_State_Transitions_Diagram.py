@@ -2,7 +2,7 @@ import os
 import allure
 import pytest
 
-from common_methods import user_actions, output_manager
+from common_methods import user, files_processor
 from common_methods import GLOBAL
 
 @allure.parent_suite("1_Analysis_Mods")
@@ -19,53 +19,55 @@ class TestStateTransitions():
                                                         ([os.path.join("TEST", "std_case_4")], "std_case4"),
                                                         ([os.path.join("TEST", "std_case_5")], "std_case5")])
     def test_StateTransitions(self, config, expected_files) -> None:
-        #The list of expected files at the utility execution complete
-        _output_files_list = ["1_1_1_Positive_path_stats_vis.pdf", "1_1_1_Positive_path_stats.xlsx", "1_1_1_Positive.gv", "1_1_1_Positive.gv.pdf"] 
-        _full_path_to_main = os.path.abspath(os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, ".."))
-        _out_path = os.path.abspath(os.path.join(_full_path_to_main, "code", "cov_tool", "output", "1_1_1_Positive"))
+
+        output_files = ["1_1_1_Positive_path_stats_vis.pdf", "1_1_1_Positive_path_stats.xlsx", "1_1_1_Positive.gv", "1_1_1_Positive.gv.pdf"] 
+        path_to_enter_point = os.path.abspath(os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, ".."))
+        path_to_actual_output = os.path.abspath(os.path.join(path_to_enter_point, "code", "cov_tool", "output", "1_1_1_Positive"))
+        path_to_expected_output = os.path.join(GLOBAL.GLOBAL.path_from_test_to_expected, expected_files)
+        path_to_expected_std = os.path.join(GLOBAL.GLOBAL.path_from_test_to_expected, "..")
         
-        #Spected rtifacts at utility execution complete
-        _expected_artifacts = output_manager.ExpectedSTDMessages()
+        usr = user.User()
         
-        #Expected output files
-        _relative_path_to_expected_files = os.path.join(GLOBAL.GLOBAL.path_from_test_to_expected, expected_files)
-        _expected_output_files = output_manager.FilesManagement(_relative_path_to_expected_files)
+        out_manager_act = files_processor.OutputManager(path_to_actual_output)
+        bin_reader_act = files_processor.BinaryReader(path_to_actual_output)
+        xlsx_reader_act = files_processor.XLSXReader(path_to_actual_output)
         
-        #Actual output files
-        _path_to_output_files = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", "1_1_1_Positive")        
-        _output_files = output_manager.FilesManagement(_path_to_output_files)
+        bin_reader_exp = files_processor.BinaryReader(path_to_expected_output)
+        xlsx_reader_exp = files_processor.XLSXReader(path_to_expected_output)
+        std_exp = files_processor.YAMLReader(path_to_expected_std)
         
         
         with allure.step("Preconditions"):
-            with allure.step("Flush output"): 
+            with allure.step("Flush Output Directory"):
+                out_manager_act.delete_files(files=output_files, fail_if_absence=False)
                 
-                #Output files remove
-                _output_files.remove_files(files=_output_files_list)
         
-        with allure.step("Run utility"):
-            _actual_artifacts = user_actions.User().try_to_run(config)
-            
-        try:
+        with allure.step("Run Utility"):
+            actual_artifacts = usr.try_to_get_exit_artifacts(arguments=config)
+        
+        
+        try: 
             with allure.step("Validations"):
                 with allure.step("Artifacts"):
-                    with allure.step("Return Code"):
-                        print(_actual_artifacts["STDERR"].decode())
-                        assert 0 == _actual_artifacts["ReturnCode"]
+                    with allure.step("Exit Code"):
+                        assert 0 == actual_artifacts["ReturnCode"]
                     with allure.step("STDOUT"):
-                        _exp_message = '\n'+_expected_artifacts.read()["stdout"]["positive_1_1_1"]+_out_path+'\n'
-                        assert _exp_message == _actual_artifacts["STDOUT"].decode().replace('\r', '')
+                        expected_stdout = '\n'+std_exp.read_file("std.yml")["stdout"]["positive_1_1_1"]+path_to_actual_output+'\n'
+                        assert expected_stdout.replace('\r', '') == actual_artifacts["STDOUT"].decode().replace('\r', '')
                     with allure.step("STDERR"):
-                        assert _expected_artifacts.read()["stderr"]["positive_1_1_1"] == _actual_artifacts["STDERR"].decode()
+                        assert '' == actual_artifacts["STDERR"].decode()
+                
                 with allure.step("Output Files"):
-                    for file in ["1_1_1_Positive.gv"]:
-                        with allure.step(f"Compare {file}"):
-                            assert _expected_output_files.read_file(file) == _output_files.read_file(file)
-                    with allure.step(f"Compare {_output_files_list[1]}"):
-                        assert True == _expected_output_files.read_table(_output_files_list[1]).compare(_output_files.read_table(_output_files_list[1])).empty
+                    with allure.step(output_files[2]):
+                        assert bin_reader_exp.read_file(file=output_files[2]) == bin_reader_act.read_file(file=output_files[2])
+                    with allure.step(output_files[1]):
+                        assert True == xlsx_reader_exp.read_file(file=output_files[1]).compare(xlsx_reader_act.read_file(file=output_files[1])).empty
         finally:
             with allure.step("Postconditions"):
-                with allure.step("Flush output files and validate if there was generated"):
-                    _output_files.remove_files(files=_output_files_list, validate=True)
+                with allure.step("Flush Output Files"):
+                    out_manager_act.delete_files(files=output_files, fail_if_absence=True)
+            
+        
         
         
         
