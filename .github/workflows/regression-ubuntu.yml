@@ -3,7 +3,7 @@ name: RegressionUBUNTU
 on:
   push:
     branches: [ "ready_to_test", "prod" ]
-  pull_request: 
+  pull_request:
     branches: [ "prod" ]
 
 permissions:
