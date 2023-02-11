@@ -21,7 +21,7 @@ class Main(IReadConfig):
         Analysis mods will be applyied to tests based on this parameters list
         '''
         with open(os.path.join(os.path.dirname(__file__), "configurations", conf+".yaml")) as stream:
-            return yaml.load(stream, yaml.FullLoader)
+            return yaml.load(stream, Loader=yaml.SafeLoader)
     
     
     if __name__ == "__main__":
