@@ -18,7 +18,7 @@ class User(object):
         return 
     
     
-    def try_to_run(self, arguments:list="conf_default", timeout:int=5) -> tuple:
+    def try_to_run(self, arguments:list="conf_default", timeout:int=10) -> tuple:
         '''
         Just run utility or driver on behalf user. Returns tuple of captured Return Code, STDOIUT and STDERR as bytes
         '''
