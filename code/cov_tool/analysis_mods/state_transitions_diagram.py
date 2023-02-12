@@ -52,7 +52,7 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
         self._transform_dateframe_before_analysis() 
         self._build_graph()
         self._path_statistics_generation()
-        self.save_results()
+        self._save_results()
         
         print(f"\nStates-transitions analysys has been succesfully performed. Actifacts saved upon: {self._output_directory}")
         
@@ -110,7 +110,7 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
             self._path_dataframe = pd.concat([self._path_dataframe, self._listed_path]).astype(str)
         
     
-    def save_results(self) -> None:        
+    def _save_results(self) -> None:        
         self._graph.render(directory=f"{self._output_directory}", view=False)
         
         with pd.ExcelWriter(f"{os.path.join(self._output_directory, self._mod_params['file_names'])}_path_stats.xlsx") as writer:

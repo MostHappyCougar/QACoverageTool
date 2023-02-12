@@ -7,7 +7,7 @@ class ISaveData(ABC):
     '''
     
     @abstractmethod
-    def save_results(self):
+    def _save_results(self):
         pass
         
         
