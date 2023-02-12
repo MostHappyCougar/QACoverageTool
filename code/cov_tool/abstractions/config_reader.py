@@ -8,6 +8,7 @@ class IReadConfig(ABC):
     
     default_config = "conf_default"
         
+        
     @abstractmethod    
     def get_conf_params(self, conf: str) -> dict:
         '''

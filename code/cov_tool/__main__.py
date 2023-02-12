@@ -5,7 +5,7 @@ import numpy as np
 
 from analysis_mods.state_transitions_diagram import StateTransitionsDiagram
 from abstractions.config_reader import IReadConfig
-from input_processors.input_processor_xlsx import DataFrameMakerXLSX
+from input_readers.input_reader_xlsx import DataFrameMakerXLSX
 
 
 class Main(IReadConfig):
