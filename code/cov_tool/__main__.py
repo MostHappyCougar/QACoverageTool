@@ -5,7 +5,7 @@ import numpy as np
 
 from analysis_mods.state_transitions_diagram import StateTransitionsDiagram
 from abstractions.config_reader import IReadConfig
-from input_processors.input_processor_xlsx import DataFrameMakerXLSX
+from input_readers.input_reader_xlsx import DataFrameMakerXLSX
 
 
 class Main(IReadConfig):
@@ -20,7 +20,7 @@ class Main(IReadConfig):
         Realization of IReadConfig interface to get list of applicable analysis mods
         Analysis mods will be applyied to tests based on this parameters list
         '''
-        with open(os.path.join(os.path.dirname(__file__), "configurations", conf+".yaml")) as stream:
+        with open(os.path.join(IReadConfig.default_path_to_configs, conf+".yaml")) as stream:
             return yaml.load(stream, Loader=yaml.SafeLoader)
     
     

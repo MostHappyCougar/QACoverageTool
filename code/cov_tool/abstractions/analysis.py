@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from abstractions.input_adapter import AInputAdapter
+from abstractions.input_socket import AInputSocket
 
 
 class AAnalysis(ABC):
@@ -8,9 +8,10 @@ class AAnalysis(ABC):
     Abstract class that describes analysis business requirements
     '''
     
-    def __init__(self, config: dict, adapter: AInputAdapter):
-        self.mod_params = config
-        self.dataframe = adapter.DATAFRAME
+    def __init__(self, mod_params: dict, socket: AInputSocket):
+        self._mod_params = mod_params
+        self._dataframe = socket.DATAFRAME_TO_ANALYZE
+    
     
     @abstractmethod
     def analyse(self) -> None:
