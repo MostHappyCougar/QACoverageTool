@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import os
 
 
 class IReadConfig(ABC):
@@ -7,6 +8,7 @@ class IReadConfig(ABC):
     '''
     
     default_config = "conf_default"
+    default_path_to_configs = os.path.join(os.path.dirname(__file__), "..", "configurations")
         
         
     @abstractmethod    

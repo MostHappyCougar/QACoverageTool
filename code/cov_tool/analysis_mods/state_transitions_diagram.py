@@ -18,7 +18,7 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
     def __init__(self, mod_params: dict):
         super().__init__(mod_params, InputSocket)
         
-        self._output_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "output", self._mod_params["output_directory"]))
+        self._output_directory = os.path.abspath(os.path.join(ISaveData.default_path_to_output, self._mod_params["output_directory"]))
         
         self._sorted = self._dataframe.sort_values([*self._mod_params["objects"], *self._mod_params["sequences"]])
         self._transformed = pd.DataFrame(columns=["seq", "object", "transitions", "states"])
