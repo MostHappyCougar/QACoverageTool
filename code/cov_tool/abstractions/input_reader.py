@@ -22,7 +22,7 @@ class AInputReader(ABC):
         pass
     
     
-    def _pass_to_socket(self, socket: AInputSocket) -> None:
+    def pass_to_socket(self, socket: AInputSocket) -> None:
         '''
         This method must be called to pass dataframe to a socket
         '''

@@ -19,4 +19,9 @@ class AAnalysis(ABC):
         Analysis main method
         '''
         pass
+    
+    
+    @abstractmethod
+    def pack_results(self) -> tuple:
+        pass
         

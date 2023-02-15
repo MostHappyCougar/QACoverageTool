@@ -1,16 +1,12 @@
-import os
-
 import graphviz as gv
 import pandas as pd
 import numpy as np
-from matplotlib import pyplot as plt
 
 from abstractions.analysis import AAnalysis
-from abstractions.save_data import ISaveData
 from input_sockets.input_socket_std import InputSocket
 
 
-class StateTransitionsDiagram(AAnalysis, ISaveData):
+class StateTransitionsDiagram(AAnalysis):
     '''
     Base class for State-Transitions Diagram analysis mod
     '''
@@ -18,7 +14,7 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
     def __init__(self, mod_params: dict):
         super().__init__(mod_params, InputSocket)
         
-        self._output_directory = os.path.abspath(os.path.join(ISaveData.default_path_to_output, self._mod_params["output_directory"]))
+        self._output_directory = self._mod_params["output_directory"]
         
         self._sorted = self._dataframe.sort_values([*self._mod_params["objects"], *self._mod_params["sequences"]])
         self._transformed = pd.DataFrame(columns=["seq", "object", "transitions", "states"])
@@ -37,6 +33,9 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
         self._states_unique = self._transformed["states"].unique()
         self._transitions_unique = self._transformed["transitions"].unique()
         
+        
+        self._output_tuple = {}
+        
 
     def analyse(self) -> None:
         '''
@@ -52,9 +51,6 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
         self._transform_dateframe_before_analysis() 
         self._build_graph()
         self._path_statistics_generation()
-        self._save_results()
-        
-        print(f"\nStates-transitions analysys has been succesfully performed. Actifacts saved upon: {self._output_directory}")
         
         
     def _transform_dateframe_before_analysis(self) -> None:
@@ -110,16 +106,12 @@ class StateTransitionsDiagram(AAnalysis, ISaveData):
             self._path_dataframe = pd.concat([self._path_dataframe, self._listed_path]).astype(str)
         
     
-    def _save_results(self) -> None:        
-        self._graph.render(directory=f"{self._output_directory}", view=False)
-        
-        with pd.ExcelWriter(f"{os.path.join(self._output_directory, self._mod_params['file_names'])}_path_stats.xlsx") as writer:
-            self._path_stats.to_excel(writer, "PathStatistics")
-
-        fig, (ax1) = plt.subplots()
-        ax1.set(title="Path frequency by PathID")
-        ax1.pie(x=self._path_stats["Count"], labels=self._path_stats.index, autopct='%1.1f%%')
-        plt.savefig(f"{os.path.join(self._output_directory, self._mod_params['file_names'])}_path_stats_vis.pdf")
+    def pack_results(self) -> tuple:
+        self._output_tuple["path"] = self._output_directory
+        self._output_tuple["files_name"] = self._mod_params['file_names']
+        self._output_tuple["graph"] = self._graph
+        self._output_tuple["stats"] = self._path_stats
+        return self._output_tuple
         
         
         
