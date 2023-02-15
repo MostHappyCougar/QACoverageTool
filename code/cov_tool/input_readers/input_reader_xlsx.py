@@ -22,4 +22,7 @@ class DataFrameMakerXLSX(AInputReader):
     
     def _create_dataframe(self, sheet: str=None) -> None:
         self._dataframe = pd.read_excel(self._file, sheet)
-        super()._pass_to_socket(InputSocket)
+
+
+    def pass_to_socket(self, socket=InputSocket)->None:
+        AInputReader.pass_to_socket(self, socket)
