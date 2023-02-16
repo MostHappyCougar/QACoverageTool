@@ -2,11 +2,11 @@ import os
 
 import pandas as pd
 
-from input_processor import AInputProcessor
-from input_adapter_std import InputAdapter
+from abstractions.input_reader import AInputReader
+from input_sockets.input_socket_std import InputSocket
 
 
-class DataFrameMakerXLSX(AInputProcessor):
+class DataFrameMakerXLSX(AInputReader):
     '''
     Class of Input processor for XLSX documents.
     At the class instance created following methods is calling:
@@ -21,5 +21,8 @@ class DataFrameMakerXLSX(AInputProcessor):
     
     
     def _create_dataframe(self, sheet: str=None) -> None:
-        self.dataframe = pd.read_excel(self.file, sheet)
-        super()._pass_to_adapter(InputAdapter)
+        self._dataframe = pd.read_excel(self._file, sheet)
+
+
+    def pass_to_socket(self, socket=InputSocket)->None:
+        AInputReader.pass_to_socket(self, socket)

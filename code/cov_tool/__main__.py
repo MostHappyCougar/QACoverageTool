@@ -3,9 +3,10 @@ import yaml
 import os
 import numpy as np
 
-from state_transitions_diagram import StateTransitionsDiagram
-from config_reader import IReadConfig
-from input_processor_xlsx import DataFrameMakerXLSX
+from analysis_mods.state_transitions_diagram import StateTransitionsDiagram
+from abstractions.config_reader import IReadConfig
+from input_readers.input_reader_xlsx import DataFrameMakerXLSX
+from savers.savers_factory_imp import SaversFactory
 
 
 class Main(IReadConfig):
@@ -20,7 +21,7 @@ class Main(IReadConfig):
         Realization of IReadConfig interface to get list of applicable analysis mods
         Analysis mods will be applyied to tests based on this parameters list
         '''
-        with open(os.path.join(os.path.dirname(__file__), "configurations", conf+".yaml")) as stream:
+        with open(os.path.join(IReadConfig.default_path_to_configs, conf+".yaml")) as stream:
             return yaml.load(stream, Loader=yaml.SafeLoader)
     
     
@@ -40,7 +41,13 @@ class Main(IReadConfig):
             for mod in np.unique(CONF_PARAMS["analysis-mods"]):
                 if mod == "state-transition":
                     path_to_input = os.path.join(os.path.dirname(__file__), CONF_PARAMS[mod]["input_directory"], CONF_PARAMS[mod]["input_table"])
-                    DataFrameMakerXLSX(path_to_input, CONF_PARAMS[mod]["input_sheet"])
+                    
+                    dataframe_to_analysis = DataFrameMakerXLSX(path_to_input, CONF_PARAMS[mod]["input_sheet"])
+                    dataframe_to_analysis.pass_to_socket()
+                    
                     STDiag = StateTransitionsDiagram(CONF_PARAMS[mod])
                     STDiag.analyse()
+                    analysis_results = STDiag.pack_results()
+                    SaversFactory.create_state_transitions_saver(analysis_results)
+                    
 
