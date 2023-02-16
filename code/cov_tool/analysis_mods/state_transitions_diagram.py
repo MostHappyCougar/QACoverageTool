@@ -38,15 +38,6 @@ class StateTransitionsDiagram(AAnalysis):
         
 
     def analyse(self) -> None:
-        '''
-        State-Transitions analysis execution.
-        This method calls another following methods in following order:
-        
-        _transform_dateframe_before_analysis
-        _build_graph
-        _path_statistics_gen
-        save_results
-        '''
         
         self._transform_dateframe_before_analysis() 
         self._build_graph()
