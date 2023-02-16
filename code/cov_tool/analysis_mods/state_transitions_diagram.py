@@ -93,7 +93,7 @@ class StateTransitionsDiagram(AAnalysis):
         self._path_list.append(np.array(object_path)[:, 2:])
                     
                     
-    def _path_statistics_generation(self):        
+    def _path_statistics_generation(self) -> None:        
         self._make_dataframe_from_path_list()
         
         self._path_stats = pd.DataFrame(np.c_[np.unique(self._path_dataframe, return_counts=1)], columns=["Path", "Count"])

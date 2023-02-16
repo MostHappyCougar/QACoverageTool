@@ -16,7 +16,7 @@ class AInputSocket(ABC):
     
    
     @abstractmethod
-    def _get_dataframe(self, ) -> pd.DataFrame:
+    def _get_dataframe(self) -> pd.DataFrame:
         pass
     
     DATAFRAME_TO_ANALYZE = property(_get_dataframe, _set_dataframe)

@@ -11,7 +11,7 @@ class ISaveData(ABC):
     
     
     @abstractmethod
-    def _save_results(self):
+    def _save_results(self) -> None:
         pass
         
         
