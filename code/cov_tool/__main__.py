@@ -6,7 +6,7 @@ import numpy as np
 from analysis_mods.state_transitions_diagram import StateTransitionsDiagram
 from abstractions.config_reader import IReadConfig
 from input_readers.input_reader_xlsx import DataFrameMakerXLSX
-from output_factory_implementation.output_factory_imp import SaversFactory
+from output_factory_implementation.output_factory_imp import OutputFactory
 
 
 class Main(IReadConfig):
@@ -48,6 +48,6 @@ class Main(IReadConfig):
                     STDiag = StateTransitionsDiagram(CONF_PARAMS[mod])
                     STDiag.analyse()
                     analysis_results = STDiag.pack_results()
-                    SaversFactory.make_state_trans_output(analysis_results)
+                    OutputFactory.make_state_trans_output(analysis_results)
                     
 
