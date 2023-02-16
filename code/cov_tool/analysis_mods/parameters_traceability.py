@@ -10,15 +10,11 @@ class ParametersTraceability(AAnalysis):
         
         self._index_params = self._mod_params["index"]
         self._columns_params = self._mod_params["columns"]
-        self._values = self._Amod_params["values"]
-        
         self._output_dataframe = pd.DataFrame
-        
-        self._output_pack = {}
-        
+    
     
     def analyse(self) -> None:
-        self._output_dataframe = pd.crosstab(self._index_params, self._columns_params)
+        self._output_dataframe = pd.crosstab([self._dataframe[ind] for ind in self._index_params], [self._dataframe[col] for col in self._columns_params])
         
         
     def format_table(self, formater: IFormatTable) -> None:
@@ -26,6 +22,8 @@ class ParametersTraceability(AAnalysis):
         
         
     def pack_results(self) -> tuple:
-        self._output_pack["result"] = self._output_pack
-        return 
+        self._output_package["path"] = self._mod_params["output_directory"]
+        self._output_package["files_name"] = self._mod_params['file_names']
+        self._output_package["result"] = self._output_dataframe
+        return self._output_package
         

@@ -8,7 +8,6 @@ from analysis_mods.parameters_traceability import ParametersTraceability
 from abstractions.config_reader import IReadConfig
 from input_readers.input_reader_xlsx import DataFrameMakerXLSX
 from output_factory_implementation.output_factory_imp import OutputFactory
-from formaters.table_formater_std import StandardTableFormater
 
 
 class Main(IReadConfig):
@@ -60,7 +59,9 @@ class Main(IReadConfig):
                     
                     PTrace = ParametersTraceability(CONF_PARAMS[mod])
                     PTrace.analyse()
-                    PTrace.format_table(StandardTableFormater)
-                    PTrace.pack_results()
+                    trace_results = PTrace.pack_results()
+                    
+                    OutputFactory.make_traceability_output(trace_results)
+                    
                     
 
