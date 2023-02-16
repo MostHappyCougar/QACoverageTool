@@ -4,9 +4,11 @@
 #                                            #
 #Applicable mods:                            #
 # - state-transitions                        #
+# - parameters-traceability                  #
 ##############################################
 analysis-mods:
    - state-transition
+   - parameters-traceability
 
 
 #########################################
@@ -43,4 +45,20 @@ state-transition:
    states:
       - CountToPlace
       - CountToCancel
+      
+parameters-traceability:
+   #All generated files will be saved here.
+   output_directory: EXAMPLE
+   file_names: EX_TEST
+   #Table and sheet where data to analysis will be take from
+   input_directory: tables_to_analisys
+   input_table: EXAMPLE.xlsx
+   input_sheet: test
+
+   index:
+      - StepID
+      - Action
+   
+   columns:
+      - CountToPlace
 

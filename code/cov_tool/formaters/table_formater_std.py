@@ -5,5 +5,5 @@ import pandas as pd
 class StandardTableFormater(IFormatTable):
     
     @staticmethod
-    def highlite_zero(self, table:pd.DataFrame)->pd.DataFrame:
+    def highlite_zero(table:pd.DataFrame)->pd.DataFrame:
         pass
