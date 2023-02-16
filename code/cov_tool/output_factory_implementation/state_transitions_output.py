@@ -1,18 +1,18 @@
-from abstractions import save_data
+from abstractions.save_output import ISaveOutput
 import os
 
 from matplotlib import pyplot as plt
 import pandas as pd
 
-class StateTransitionsDiagramsSaver(save_data.ISaveData):
+class StateTransitionsDiagramOutput(ISaveOutput):
     
     def __init__(self, data: tuple):
-        self._save_results(data)
+        self._save_output(data)
     
     
-    def _save_results(self, data: tuple):
+    def _save_output(self, data: tuple):
         
-        self._full_path_to_output = os.path.abspath(os.path.join(save_data.ISaveData.default_path_to_output, data['path']))
+        self._full_path_to_output = os.path.abspath(os.path.join(ISaveOutput.default_path_to_output, data['path']))
         
         data["graph"].render(directory=f"{self._full_path_to_output}", view=False)
         
