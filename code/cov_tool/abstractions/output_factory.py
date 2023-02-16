@@ -7,5 +7,5 @@ class AOutputFactory(ABC):
     
     @staticmethod
     @abstractmethod
-    def make_state_trans_output(data: tuple, saver: ISaveOutput) -> ISaveOutput:
+    def make_state_trans_output(data: tuple, output_model: ISaveOutput) -> ISaveOutput:
         pass

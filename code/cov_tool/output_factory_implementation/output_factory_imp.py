@@ -4,5 +4,5 @@ from output_factory_implementation.state_transitions_output import StateTransiti
 class SaversFactory(AOutputFactory):
     
     @staticmethod
-    def make_state_trans_output(data: tuple, saver=StateTransitionsDiagramOutput) -> StateTransitionsDiagramOutput:
-        return saver(data)
+    def make_state_trans_output(data: tuple, output_model=StateTransitionsDiagramOutput) -> StateTransitionsDiagramOutput:
+        return output_model(data)
