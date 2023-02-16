@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 import os
 
 
-class ISaveData(ABC):
+class ISaveOutput(ABC):
     '''
     Interface that may be realized to save analysis results
     '''
@@ -11,7 +11,7 @@ class ISaveData(ABC):
     
     
     @abstractmethod
-    def _save_results(self) -> None:
+    def _save_output(self) -> None:
         pass
         
         
