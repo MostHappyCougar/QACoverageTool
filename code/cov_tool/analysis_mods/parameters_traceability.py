@@ -1,18 +1,31 @@
 import pandas as pd
 
 from abstractions.analysis import AAnalysis
-from abstractions.save_data import ISaveData
-from input_adapters.input_adapter_std import InputAdapter
+from input_sockets.input_socket_std import InputSocket
+from abstractions.table_formater import IFormatTable
 
-class ParametersTrassobility(AAnalysis, ISaveData):
+class ParametersTraceability(AAnalysis):
     def __init__(self, mod_params):
-        super().__init__(mod_params, InputAdapter)
+        super().__init__(mod_params, InputSocket)
         
-        self.index_params = self._mod_params["index"]
-        self.columns_params = self._mod_params["columns"]
-        self.values = self._Amod_params["values"]
+        self._index_params = self._mod_params["index"]
+        self._columns_params = self._mod_params["columns"]
+        self._values = self._Amod_params["values"]
+        
+        self._output_dataframe = pd.DataFrame
+        
+        self._output_pack = {}
         
     
     def analyse(self) -> None:
-        pd.pivot_table(self.dataframe, values=self.values, index=self.index_params, columns=self.columns_params)
+        self._output_dataframe = pd.crosstab(self._index_params, self._columns_params)
+        
+        
+    def format_table(self, formater: IFormatTable) -> None:
+        self._output_dataframe = formater.highlite_zero(table=self._output_dataframe)
+        
+        
+    def pack_results(self) -> tuple:
+        self._output_pack["result"] = self._output_pack
+        return 
         
