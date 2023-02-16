@@ -8,7 +8,7 @@
 ##############################################
 analysis-mods:
    - state-transition
-   - parameters-traceability
+   #- parameters-traceability
 
 
 #########################################
@@ -61,4 +61,5 @@ parameters-traceability:
    
    columns:
       - CountToPlace
+      - TestCase
 

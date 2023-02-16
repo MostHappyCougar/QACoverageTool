@@ -59,6 +59,9 @@ class Main(IReadConfig):
                     
                     PTrace = ParametersTraceability(CONF_PARAMS[mod])
                     PTrace.analyse()
-                    PTrace.pack_results()
+                    trace_results = PTrace.pack_results()
+                    
+                    OutputFactory.make_traceability_output(trace_results)
+                    
                     
 

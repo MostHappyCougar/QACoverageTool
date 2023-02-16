@@ -11,6 +11,7 @@ class AAnalysis(ABC):
     def __init__(self, mod_params: dict, socket: AInputSocket):
         self._mod_params = mod_params
         self._dataframe = socket.DATAFRAME_TO_ANALYZE
+        self._output_package = {}
     
     
     @abstractmethod
