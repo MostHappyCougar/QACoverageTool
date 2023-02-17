@@ -14,8 +14,7 @@ class ParametersTraceability(AAnalysis):
     
     
     def analyse(self) -> None:
-        self._output_dataframe = pd.crosstab([self._dataframe[ind] for ind in self._index_params], [self._dataframe[col] for col in self._columns_params], 
-                                             margins=True, margins_name="_ValuesOccurCount")
+        self._output_dataframe = pd.crosstab([self._dataframe[ind] for ind in self._index_params], [self._dataframe[col] for col in self._columns_params])
         
         
     def format_table(self, formater: IFormatTable) -> None:
@@ -23,9 +22,6 @@ class ParametersTraceability(AAnalysis):
         self._output_dataframe = formater.make_borders(table=self._output_dataframe)
         self._output_dataframe = formater.format_columns(table=self._output_dataframe)
         self._output_dataframe = formater.format_index(table=self._output_dataframe)
-        
-        self._output_dataframe = formater.highlite_margins_bot(table=self._output_dataframe)
-        self._output_dataframe = formater.highlite_margins_right(table=self._output_dataframe)
         
         
     def pack_results(self) -> tuple:

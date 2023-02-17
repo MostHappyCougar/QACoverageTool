@@ -41,30 +41,6 @@ class StandardTableFormater(IFormatTable):
         return "background-color: #6D95EC; font-weight: bold; border: 1px solid black" if value != None else None
     
     
-    @staticmethod
-    def highlite_margins_bot(table: pd.DataFrame.style) -> pd.DataFrame.style:
-        idx = pd.IndexSlice
-        slice_ = idx[idx['_ValuesOccurCount'], :]
-        return table.applymap(StandardTableFormater.margins_highliter_bot, subset=slice_)
-    
-    
-    @staticmethod
-    def margins_highliter_bot(value):
-        return np.where(value != None, "border: 1px solid black; background-color: #CDCDCD;", None)
-    
-    
-    @staticmethod
-    def highlite_margins_right(table: pd.DataFrame.style) -> pd.DataFrame.style:
-        idx = pd.IndexSlice
-        slice_ = idx[:, idx['_ValuesOccurCount']]
-        return table.applymap(StandardTableFormater.margins_highliter_right, subset=slice_)
-    
-    
-    @staticmethod
-    def margins_highliter_right(value):
-        return np.where(value != None, "border: 1px solid black; background-color: #CDCDCD;", None)
-    
-    
     
 
     
