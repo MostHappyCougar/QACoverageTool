@@ -8,7 +8,7 @@
 ##############################################
 analysis-mods:
    - state-transition
-   #- parameters-traceability
+   - parameters-traceability
 
 
 #########################################
@@ -52,12 +52,13 @@ parameters-traceability:
    file_names: EX_TEST
    #Table and sheet where data to analysis will be take from
    input_directory: tables_to_analisys
-   input_table: EXAMPLE.xlsx
-   input_sheet: test
+   input_table: TEST/1_2_1_TEST.xlsx
+   input_sheet: Cases
 
    index:
-      - CountToPlace
+      - Sequencer
    
    columns:
-      - CountToCancel
+      - Object
+      - Transitions
 
