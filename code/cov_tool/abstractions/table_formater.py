@@ -7,5 +7,5 @@ class IFormatTable(ABC):
     
     @staticmethod
     @abstractmethod
-    def highlite_zero(self, table: pd.DataFrame) -> pd.DataFrame:
+    def highlite_zero(table: pd.DataFrame) -> pd.DataFrame:
         pass

@@ -19,6 +19,9 @@ class ParametersTraceability(AAnalysis):
         
     def format_table(self, formater: IFormatTable) -> None:
         self._output_dataframe = formater.highlite_zero(table=self._output_dataframe)
+        self._output_dataframe = formater.make_borders(table=self._output_dataframe)
+        self._output_dataframe = formater.format_columns(table=self._output_dataframe)
+        self._output_dataframe = formater.format_index(table=self._output_dataframe)
         
         
     def pack_results(self) -> tuple:

@@ -56,10 +56,8 @@ parameters-traceability:
    input_sheet: test
 
    index:
-      - StepID
-      - Action
+      - CountToPlace
    
    columns:
-      - CountToPlace
-      - TestCase
+      - CountToCancel
 
