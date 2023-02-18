@@ -33,7 +33,7 @@ class TestPositive:
                 if case_id:
                     _out_files_empty = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", case_id)
                     _output_files_e = files_processor.OutputManager(_out_files_empty)
-                    _output_files_e.delete_files(files=_output_files_list)
+                    _output_files_e.delete_files(files=_output_files_list_empty_config)
                 else:
                     _output_files_f = files_processor.OutputManager(_path_to_out_f)
                     _output_files_s = files_processor.OutputManager(_path_to_out_s) 
