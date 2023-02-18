@@ -15,7 +15,7 @@ class StateTransitionsDiagramOutput(ISaveOutput):
         self._full_path_to_output = os.path.abspath(os.path.join(ISaveOutput.default_path_to_output, data['path']))
         
         if os.path.exists(self._full_path_to_output) == False:
-            os.mkdir(self._full_path_to_output)
+            os.makedirs(self._full_path_to_output)
         
         data["graph"].render(directory=f"{self._full_path_to_output}", view=False)
         
