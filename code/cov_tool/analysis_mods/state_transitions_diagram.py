@@ -33,20 +33,8 @@ class StateTransitionsDiagram(AAnalysis):
         self._states_unique = self._transformed["states"].unique()
         self._transitions_unique = self._transformed["transitions"].unique()
         
-        
-        self._output_tuple = {}
-        
 
     def analyse(self) -> None:
-        '''
-        State-Transitions analysis execution.
-        This method calls another following methods in following order:
-        
-        _transform_dateframe_before_analysis
-        _build_graph
-        _path_statistics_gen
-        save_results
-        '''
         
         self._transform_dateframe_before_analysis() 
         self._build_graph()
@@ -107,11 +95,11 @@ class StateTransitionsDiagram(AAnalysis):
         
     
     def pack_results(self) -> tuple:
-        self._output_tuple["path"] = self._output_directory
-        self._output_tuple["files_name"] = self._mod_params['file_names']
-        self._output_tuple["graph"] = self._graph
-        self._output_tuple["stats"] = self._path_stats
-        return self._output_tuple
+        self._output_package["path"] = self._output_directory
+        self._output_package["files_name"] = self._mod_params['file_names']
+        self._output_package["graph"] = self._graph
+        self._output_package["stats"] = self._path_stats
+        return self._output_package
         
         
         
