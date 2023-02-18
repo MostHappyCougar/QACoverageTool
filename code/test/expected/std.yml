@@ -6,6 +6,7 @@ stdout:
    positive_1_1_1: 'States-transitions analysys has been succesfully performed. Actifacts saved upon: '
    positive_2_2_statetr: 'States-transitions analysys has been succesfully performed. Actifacts saved upon: '
    positive_2_2_ptrace: 'Parameters Traceability analysys has been succesfully performed. Actifacts saved upon: '
+   positive_1_2_1: 'Parameters Traceability analysys has been succesfully performed. Actifacts saved upon: '
 
 stderr:
    positive_1_1_1: ""
