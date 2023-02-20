@@ -7,6 +7,7 @@
 ##############################################
 analysis-mods:
    - state-transition
+   - parameters-traceability
 
 
 #########################################
@@ -45,5 +46,22 @@ state-transition:
    #You may mention here a several columns. Each unique combination of values from mentioned columns will be considered as one state
    states:
       - State1
+
+parameters-traceability:
+   #All generated files will be saved here.
+   output_directory: 2_2_2_Positive/case_2
+   file_names: 2_2_2_Positive
+   #Table and sheet where data to analysis will be take from
+   input_directory: tables_to_analisys
+   input_table: TEST/1_2_1_TEST.xlsx
+   input_sheet: Cases
+
+   index:
+      - Sequencer
+      - Object
+
+   columns:
+      - Transitions
+      - States
 
 
