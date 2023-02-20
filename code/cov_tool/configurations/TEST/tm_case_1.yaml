@@ -45,7 +45,7 @@ state-transition:
    states:
       - CountToPlace
       - CountToCancel
-      
+
 parameters-traceability:
    #All generated files will be saved here.
    output_directory: 1_2_1_Positive
@@ -58,7 +58,7 @@ parameters-traceability:
    index:
       - Sequencer
       #- Object
-   
+
    columns:
       - Transitions
       #- States
