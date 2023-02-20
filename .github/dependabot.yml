@@ -9,3 +9,4 @@ updates:
     directory: "/code/cov_tool" # Location of package manifests
     schedule:
       interval: "weekly"
+    target-branch: "ready_to_test"
