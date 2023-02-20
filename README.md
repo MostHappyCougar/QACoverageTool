@@ -32,7 +32,7 @@ Befure utility use you should create and configure a config in `/code/cov_tool/c
 
 <details><summary>Config Example</summary>
 
-### This config is prepared for **EXAMPLE.xlsx** stored in `code/cov_tool/tables_to_analisys/`
+### This config is prepared for EXAMPLE.xlsx and 1_2_1_TEST.xlsx stored in `code/cov_tool/tables_to_analisys/`
 
 ```yaml
 ##############################################
@@ -40,9 +40,11 @@ Befure utility use you should create and configure a config in `/code/cov_tool/c
 #                                            #
 #Applicable mods:                            #
 # - state-transitions                        #
+# - parameters-traceability                  #
 ##############################################
 analysis-mods:
    - state-transition
+   - parameters-traceability
 
 
 #########################################
@@ -58,27 +60,44 @@ state-transition:
    input_directory: tables_to_analisys
    input_table: EXAMPLE.xlsx
    input_sheet: test
-   
+
    #States and transitions will be assigned to object based on these table columns.
    #When values from objects columns is same for several states/transitions then these states/transitions will be related to this object
    #You may mention here a several columns. So each unique compination of values of mentioned columns will be considered as one unique object
    objects:
       - TestCase
-   
+
    #Sequence of transitions and states will be considered based on this field
    sequences:
       - StepID
-      
+
    #Transitions will be took from these fields
    #You may mention here a several columns. Each unique combination of values of mentioned columns will be considered as one transition
    transitions:
       - Action
-   
+
    #States will be took from these fields
    #You may mention here a several columns. Each unique combination of values from mentioned columns will be considered as one state
    states:
       - CountToPlace
       - CountToCancel
+
+parameters-traceability:
+   #All generated files will be saved here.
+   output_directory: EXAMPLE
+   file_names: EX_TEST
+   #Table and sheet where data to analysis will be take from
+   input_directory: tables_to_analisys
+   input_table: TEST/1_2_1_TEST.xlsx
+   input_sheet: Cases
+
+   index:
+      - Sequencer
+      - Object
+
+   columns:
+      - Transitions
+      - States
 ```
 
 </details>
