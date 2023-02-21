@@ -11,7 +11,7 @@ class AAnalysis(ABC):
     def __init__(self, mod_params: dict, socket: AInputSocket):
         self._mod_params = mod_params
         self._dataframe = socket.DATAFRAME_TO_ANALYZE
-        self._output_package = {}
+        self._output_package = {"path": self._mod_params["output_directory"], "files_name": self._mod_params['files_name'], "data": any}
     
     
     @abstractmethod
@@ -23,6 +23,6 @@ class AAnalysis(ABC):
     
     
     @abstractmethod
-    def pack_results(self) -> tuple["path", "files_name"]:
+    def pack_results(self) -> dict:
         pass
         

@@ -14,7 +14,7 @@ class StateTransitionsDiagram(AAnalysis):
     def __init__(self, mod_params: dict):
         super().__init__(mod_params, InputSocket)
         
-        self._output_directory = self._mod_params["output_directory"]
+        self._output_package["data"] = {"graph": gv.Digraph, "stats": pd.DataFrame}
         
         self._sorted = self._dataframe.sort_values([*self._mod_params["objects"], *self._mod_params["sequences"]])
         self._transformed = pd.DataFrame(columns=["seq", "object", "transitions", "states"])
@@ -95,10 +95,8 @@ class StateTransitionsDiagram(AAnalysis):
         
     
     def pack_results(self) -> tuple:
-        self._output_package["path"] = self._output_directory
-        self._output_package["files_name"] = self._mod_params['files_name']
-        self._output_package["graph"] = self._graph
-        self._output_package["stats"] = self._path_stats
+        self._output_package["data"]["graph"] = self._graph
+        self._output_package["data"]["stats"] = self._path_stats
         return self._output_package
         
         
