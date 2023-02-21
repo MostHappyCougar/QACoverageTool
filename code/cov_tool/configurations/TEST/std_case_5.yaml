@@ -17,7 +17,7 @@ analysis-mods:
 state-transition:
    #All generated files will be saved here.
    output_directory: 1_1_1_Positive
-   file_names: 1_1_1_Positive
+   files_name: 1_1_1_Positive
    #Table and sheet where data to analysis will be take from
    input_directory: tables_to_analisys
    input_table: TEST/1_1_1_TEST.xlsx

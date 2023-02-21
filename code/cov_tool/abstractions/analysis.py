@@ -23,6 +23,6 @@ class AAnalysis(ABC):
     
     
     @abstractmethod
-    def pack_results(self) -> tuple:
+    def pack_results(self) -> tuple["path", "files_name"]:
         pass
         

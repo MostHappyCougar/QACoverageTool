@@ -26,7 +26,7 @@ class ParametersTraceability(AAnalysis):
         
     def pack_results(self) -> tuple:
         self._output_package["path"] = self._mod_params["output_directory"]
-        self._output_package["files_name"] = self._mod_params['file_names']
+        self._output_package["files_name"] = self._mod_params['files_name']
         self._output_package["result"] = self._output_dataframe
         return self._output_package
         
