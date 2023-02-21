@@ -18,7 +18,7 @@ analysis-mods:
 state-transition:
    #All generated files will be saved here.
    output_directory: 2_2_2_Positive/case_2
-   file_names: 2_2_2_Positive
+   files_name: 2_2_2_Positive
    #Table and sheet where data to analysis will be take from
    input_directory: tables_to_analisys
    input_table: TEST/1_1_1_TEST.xlsx
@@ -47,19 +47,23 @@ state-transition:
    states:
       - State1
 
+
+#Parameters traceability matrix
 parameters-traceability:
    #All generated files will be saved here.
    output_directory: 2_2_2_Positive/case_2
-   file_names: 2_2_2_Positive
+   files_name: 2_2_2_Positive
    #Table and sheet where data to analysis will be take from
    input_directory: tables_to_analisys
    input_table: TEST/1_2_1_TEST.xlsx
    input_sheet: Cases
 
+   #Values that will be reflected in index of result table
    index:
       - Sequencer
       - Object
 
+   #Values that will be reflected in columns of result table
    columns:
       - Transitions
       - States

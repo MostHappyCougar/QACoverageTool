@@ -6,7 +6,7 @@ from abstractions.table_formater import IFormatTable
 class StandardTableFormater(IFormatTable):
         
     @staticmethod
-    def highlite_zero(table:pd.DataFrame)->pd.DataFrame:
+    def highlite_zero(table:pd.DataFrame)->pd.DataFrame.style:
         return table.style.applymap(StandardTableFormater.zero_highliter)
     
     

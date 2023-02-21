@@ -1,3 +1,8 @@
+'''
+There is code duplication because two different cases may be changed separately and irrespective to each other
+'''
+
+
 import os
 import allure
 import pytest

@@ -18,6 +18,6 @@ class TraceabilityMatrixOutput(ISaveOutput):
             os.makedirs(self._full_path_to_output)
         
         with pd.ExcelWriter(f"{os.path.join(self._full_path_to_output, data['files_name'])}_param_trace.xlsx") as writer:
-            data["result"].to_excel(writer, "ParamsTraceability")
+            data["data"].to_excel(writer, "ParamsTraceability")
             
         print(f"\nParameters Traceability analysys has been succesfully performed. Actifacts saved upon: {self._full_path_to_output}")
