@@ -17,7 +17,7 @@ class BUser():
         self.utility = enter_point
         
     
-    def try_to_get_exit_artifacts(self, arguments:list="conf_default", timeout:int=10) -> tuple:
+    def try_to_get_exit_artifacts(self, arguments:list="conf_default", timeout:int=30) -> tuple:
         try:
             self.artifacts = self._get_exit_artifacts(arguments, timeout)
         except sp.TimeoutExpired:
