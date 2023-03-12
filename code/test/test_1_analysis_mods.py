@@ -61,7 +61,7 @@ class TestStateTransitions():
                         expected_stdout = '\n'+std_exp.read_file("std.yml")["stdout"]["positive_1_1_1"]+path_to_actual_output+'\n'
                         assert expected_stdout.replace('\r', '') == actual_artifacts["STDOUT"].decode().replace('\r', '')
                     with allure.step("STDERR"):
-                        mpl_err = '\n'+"Matplotlib is building the font cache; this may take a moment."+'\n'
+                        mpl_err = "Matplotlib is building the font cache; this may take a moment."+'\n'
                         assert '' == actual_artifacts["STDERR"].decode() or mpl_err == actual_artifacts["STDERR"].decode().replace('\r', '')
                 
                 with allure.step("Output Files"):
@@ -124,7 +124,7 @@ class TestTraceabilityMatrix():
                         expected_stdout = '\n'+std_exp.read_file("std.yml")["stdout"]["positive_1_2_1"]+path_to_actual_output+'\n'
                         assert expected_stdout.replace('\r', '') == actual_artifacts["STDOUT"].decode().replace('\r', '')
                     with allure.step("STDERR"):
-                        mpl_err = '\n'+"Matplotlib is building the font cache; this may take a moment."+'\n'
+                        mpl_err = "Matplotlib is building the font cache; this may take a moment."+'\n'
                         assert '' == actual_artifacts["STDERR"].decode() or mpl_err == actual_artifacts["STDERR"].decode().replace('\r', '')
                 
                 with allure.step("Output Files"):
