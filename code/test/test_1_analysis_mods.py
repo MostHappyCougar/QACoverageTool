@@ -59,9 +59,10 @@ class TestStateTransitions():
                         assert 0 == actual_artifacts["ReturnCode"]
                     with allure.step("STDOUT"):
                         expected_stdout = '\n'+std_exp.read_file("std.yml")["stdout"]["positive_1_1_1"]+path_to_actual_output+'\n'
-                        assert expected_stdout.replace('\r', '') in actual_artifacts["STDOUT"].decode().replace('\r', '')
+                        assert expected_stdout.replace('\r', '') == actual_artifacts["STDOUT"].decode().replace('\r', '')
                     with allure.step("STDERR"):
-                        assert '' == actual_artifacts["STDERR"].decode()
+                        mpl_err = '\n'+"Matplotlib is building the font cache; this may take a moment."+'\n'
+                        assert '' == actual_artifacts["STDERR"].decode() or mpl_err == actual_artifacts["STDERR"].decode().replace('\r', '')
                 
                 with allure.step("Output Files"):
                     with allure.step(output_files[2]):
@@ -121,9 +122,10 @@ class TestTraceabilityMatrix():
                         assert 0 == actual_artifacts["ReturnCode"]
                     with allure.step("STDOUT"):
                         expected_stdout = '\n'+std_exp.read_file("std.yml")["stdout"]["positive_1_2_1"]+path_to_actual_output+'\n'
-                        assert expected_stdout.replace('\r', '') in actual_artifacts["STDOUT"].decode().replace('\r', '')
+                        assert expected_stdout.replace('\r', '') == actual_artifacts["STDOUT"].decode().replace('\r', '')
                     with allure.step("STDERR"):
-                        assert '' == actual_artifacts["STDERR"].decode()
+                        mpl_err = '\n'+"Matplotlib is building the font cache; this may take a moment."+'\n'
+                        assert '' == actual_artifacts["STDERR"].decode() or mpl_err == actual_artifacts["STDERR"].decode().replace('\r', '')
                 
                 with allure.step("Output Files"):
                     with allure.step(output_files[0]):
