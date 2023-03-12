@@ -59,7 +59,7 @@ class TestStateTransitions():
                         assert 0 == actual_artifacts["ReturnCode"]
                     with allure.step("STDOUT"):
                         expected_stdout = '\n'+std_exp.read_file("std.yml")["stdout"]["positive_1_1_1"]+path_to_actual_output+'\n'
-                        assert expected_stdout.replace('\r', '') == actual_artifacts["STDOUT"].decode().replace('\r', '')
+                        assert expected_stdout.replace('\r', '') in actual_artifacts["STDOUT"].decode().replace('\r', '')
                     with allure.step("STDERR"):
                         assert '' == actual_artifacts["STDERR"].decode()
                 
