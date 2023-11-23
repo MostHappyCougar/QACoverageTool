@@ -42,7 +42,7 @@ class Main(IReadConfig):
             #Perform analysis according to mods specified
             for mod in np.unique(CONF_PARAMS["analysis-mods"]):
                 if mod == "state-transition":
-                    path_to_input = os.path.join(os.path.dirname(__file__), CONF_PARAMS[mod]["input_directory"], CONF_PARAMS[mod]["input_table"])
+                    path_to_input = os.path.join(os.path.dirname(__file__), "..", CONF_PARAMS[mod]["input_directory"], CONF_PARAMS[mod]["input_table"])
                     
                     dataframe_to_analysis = DataFrameMakerXLSX(path_to_input, CONF_PARAMS[mod]["input_sheet"])
                     dataframe_to_analysis.pass_to_socket()
@@ -53,7 +53,7 @@ class Main(IReadConfig):
                     OutputFactory.make_state_trans_output(analysis_results)
                 
                 if mod == "parameters-traceability":
-                    path_to_input = os.path.join(os.path.dirname(__file__), CONF_PARAMS[mod]["input_directory"], CONF_PARAMS[mod]["input_table"])
+                    path_to_input = os.path.join(os.path.dirname(__file__), "..", CONF_PARAMS[mod]["input_directory"], CONF_PARAMS[mod]["input_table"])
                     
                     dataframe_to_analysis = DataFrameMakerXLSX(path_to_input, CONF_PARAMS[mod]["input_sheet"])
                     dataframe_to_analysis.pass_to_socket()

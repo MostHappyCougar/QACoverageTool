@@ -27,7 +27,7 @@ class TestStateTransitions():
 
         output_files = ["1_1_1_Positive_path_stats_vis.pdf", "1_1_1_Positive_path_stats.xlsx", "1_1_1_Positive.gv", "1_1_1_Positive.gv.pdf"] 
         path_to_enter_point = os.path.abspath(os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, ".."))
-        path_to_actual_output = os.path.abspath(os.path.join(path_to_enter_point, "code", "cov_tool", "output", "1_1_1_Positive"))
+        path_to_actual_output = os.path.abspath(os.path.join(path_to_enter_point, "code", "output", "1_1_1_Positive"))
         path_to_expected_output = os.path.join(GLOBAL.GLOBAL.path_from_test_to_expected, expected_files)
         path_to_expected_std = os.path.join(GLOBAL.GLOBAL.path_from_test_to_expected, "..")
         
@@ -92,7 +92,7 @@ class TestTraceabilityMatrix():
 
         output_files = ["1_2_1_Positive_param_trace.xlsx"] 
         path_to_enter_point = os.path.abspath(os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, ".."))
-        path_to_actual_output = os.path.abspath(os.path.join(path_to_enter_point, "code", "cov_tool", "output", "1_2_1_Positive"))
+        path_to_actual_output = os.path.abspath(os.path.join(path_to_enter_point, "code", "output", "1_2_1_Positive"))
         path_to_expected_output = os.path.join(GLOBAL.GLOBAL.path_from_test_to_expected, expected_files)
         path_to_expected_std = os.path.join(GLOBAL.GLOBAL.path_from_test_to_expected, "..")
         
