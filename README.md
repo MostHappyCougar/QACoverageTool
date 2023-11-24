@@ -29,11 +29,11 @@ from any work directory
 
 # Usage
 ## Configuration
-Befure utility use you should create and configure a config in `/code/cov_tool/configurations/` directory. There is should be specified a list of analysis mods that will be performed at utility run. Also you can configure each analysis mod in details via mentioned config. There is possible to store several configs and use any count of them individually or together
+Befure utility use you should create and configure a config in `/code/configurations/` directory. There is should be specified a list of analysis mods that will be performed at utility run. Also you can configure each analysis mod in details via mentioned config. There is possible to store several configs and use any count of them individually or together
 
 <details><summary>Config Example</summary>
 
-### This config is prepared for EXAMPLE.xlsx and 1_2_1_TEST.xlsx stored in `code/cov_tool/tables_to_analisys/`
+### This config is prepared for EXAMPLE.xlsx and 1_2_1_TEST.xlsx stored in `code/tables_to_analisys/`
 
 ```yaml
 ##############################################
