@@ -121,7 +121,7 @@ $ python cov_tool conf_default
 	#### Preconditions:
 	- Configuration: 
 	
-		Config file for this usage case is: `code/python/configurations/conf_default.yaml`
+		Config file for this usage case is: `code/configurations/conf_default.yaml`
 
 	- Input table for analysis - there is should be no merged cells:
 		
@@ -131,7 +131,7 @@ $ python cov_tool conf_default
 		</details>
 
 	#### Analysis results:
-	- There is following files as result of analysis in `code/python/output/EXAMPLE`:
+	- There is following files as result of analysis in `code/output/EXAMPLE`:
 	
 		<details><summary>EX_TEST.gv - dot-language file for state-transitions diagram</summary>
 
@@ -216,7 +216,7 @@ $ python cov_tool conf_default
 	#### Preconditions:
 	- Configuration: 
 	
-		Config file for this usage case is: `code/python/configurations/conf_default.yaml`
+		Config file for this usage case is: `code/configurations/conf_default.yaml`
 
 	- Input table for analysis - there is should be no merged cells:
 		
@@ -227,7 +227,7 @@ $ python cov_tool conf_default
 		</details>
 		
 	#### Analysis results:
-	- There is following files as result of analysis in `code/python/output/EXAMPLE`:
+	- There is following files as result of analysis in `code/output/EXAMPLE`:
 	
 		<details><summary>EX_TEST_param_trace.xlsx</summary>
 		
