@@ -47,7 +47,7 @@ class TestPositive:
                 
         with allure.step("Run utility"):
             _actual_artifacts = user.User().try_to_get_exit_artifacts(run_arguments)
-            print(_actual_artifacts["STDERR"].decode())
+            print(_actual_artifacts["STDERR"].decode('utf-8', errors='ignore'))
 
         with allure.step("Postconditions"):
                 time.sleep(1)
