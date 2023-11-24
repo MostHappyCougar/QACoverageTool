@@ -7,7 +7,7 @@ class ISaveOutput(ABC):
     Interface that may be realized to save analysis results
     '''
     
-    default_path_to_output = os.path.join(os.path.dirname(__file__), "..", "output")
+    default_path_to_output = os.path.join(os.path.dirname(__file__), "..", "..", "output")
     
     
     @abstractmethod

@@ -30,13 +30,13 @@ class TestPositive:
         _output_files_list_empty_config = ["EX_TEST_path_stats_vis.pdf", "EX_TEST_path_stats.xlsx", "EX_TEST.gv", "EX_TEST.gv.pdf", "EX_TEST_param_trace.xlsx"]
         
         #Path to output directory
-        _path_to_out_f = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", "2_2_2_Positive", "case_1")
-        _path_to_out_s = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", "2_2_2_Positive", "case_2")      
+        _path_to_out_f = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "..", "output", "2_2_2_Positive", "case_1")
+        _path_to_out_s = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "..", "output", "2_2_2_Positive", "case_2")      
                
         with allure.step("Preconditions"):
             with allure.step("Flush output"):
                 if case_id:
-                    _out_files_empty = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "output", case_id)
+                    _out_files_empty = os.path.join(GLOBAL.GLOBAL.path_from_test_to_util, "..", "output", case_id)
                     _output_files_e = files_processor.OutputManager(_out_files_empty)
                     _output_files_e.delete_files(files=_output_files_list_empty_config)
                 else:
@@ -47,7 +47,7 @@ class TestPositive:
                 
         with allure.step("Run utility"):
             _actual_artifacts = user.User().try_to_get_exit_artifacts(run_arguments)
-            print(_actual_artifacts["STDERR"].decode())
+            print(_actual_artifacts["STDERR"].decode('utf-8', errors='ignore'))
 
         with allure.step("Postconditions"):
                 time.sleep(1)
