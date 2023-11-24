@@ -16,7 +16,7 @@ $ git clone https://github.com/MostHappyCougar/QACoverageTool.git
 Or just download packages from last release
 
 ## Requirements
-`requirements.txt` file is in code/python directory of this utility.
+`requirements.txt` file is in code/cov_tool directory of this utility.
 Change current work directory to `some/path/to/code/cov_tool` then execute in terminal to install requirements: 
 ```
 $ pip install -r requirements.txt
@@ -29,11 +29,11 @@ from any work directory
 
 # Usage
 ## Configuration
-Befure utility use you should create and configure a config in `/code/cov_tool/configurations/` directory. There is should be specified a list of analysis mods that will be performed at utility run. Also you can configure each analysis mod in details via mentioned config. There is possible to store several configs and use any count of them individually or together
+Befure utility use you should create and configure a config in `/code/configurations/` directory. There is should be specified a list of analysis mods that will be performed at utility run. Also you can configure each analysis mod in details via mentioned config. There is possible to store several configs and use any count of them individually or together
 
 <details><summary>Config Example</summary>
 
-### This config is prepared for EXAMPLE.xlsx and 1_2_1_TEST.xlsx stored in `code/cov_tool/tables_to_analisys/`
+### This config is prepared for EXAMPLE.xlsx and 1_2_1_TEST.xlsx stored in `code/tables_to_analisys/`
 
 ```yaml
 ##############################################
@@ -121,7 +121,7 @@ $ python cov_tool conf_default
 	#### Preconditions:
 	- Configuration: 
 	
-		Config file for this usage case is: `code/python/configurations/conf_default.yaml`
+		Config file for this usage case is: `code/configurations/conf_default.yaml`
 
 	- Input table for analysis - there is should be no merged cells:
 		
@@ -131,7 +131,7 @@ $ python cov_tool conf_default
 		</details>
 
 	#### Analysis results:
-	- There is following files as result of analysis in `code/python/output/EXAMPLE`:
+	- There is following files as result of analysis in `code/output/EXAMPLE`:
 	
 		<details><summary>EX_TEST.gv - dot-language file for state-transitions diagram</summary>
 
@@ -216,7 +216,7 @@ $ python cov_tool conf_default
 	#### Preconditions:
 	- Configuration: 
 	
-		Config file for this usage case is: `code/python/configurations/conf_default.yaml`
+		Config file for this usage case is: `code/configurations/conf_default.yaml`
 
 	- Input table for analysis - there is should be no merged cells:
 		
@@ -227,7 +227,7 @@ $ python cov_tool conf_default
 		</details>
 		
 	#### Analysis results:
-	- There is following files as result of analysis in `code/python/output/EXAMPLE`:
+	- There is following files as result of analysis in `code/output/EXAMPLE`:
 	
 		<details><summary>EX_TEST_param_trace.xlsx</summary>
 		
