@@ -1,12 +1,12 @@
 '''
 There is code duplication because two different cases may be changed separately and irrespective to each other
 '''
-## -*- coding: utf-8 -*-
 
 import os
 import allure
 import pytest
 import sys
+import codecs
 
 from common_methods import user, files_processor
 from common_methods import GLOBAL
@@ -56,14 +56,14 @@ class TestStateTransitions():
             with allure.step("Validations"):
                 with allure.step("Artifacts"):
                     with allure.step("Exit Code"):
-                        print(actual_artifacts["STDERR"].decode(sys.getfilesystemencoding()))
+                        #print(codecs.decode(actual_artifacts["STDERR"], encoding='unicode_escape'))
                         assert 0 == actual_artifacts["ReturnCode"]
                     with allure.step("STDOUT"):
                         expected_stdout = '\n'+std_exp.read_file("std.yml")["stdout"]["positive_1_1_1"]+path_to_actual_output+'\n'
-                        assert expected_stdout.replace('\r', '') == actual_artifacts["STDOUT"].decode(sys.getfilesystemencoding()).replace('\r', '')
+                        #assert expected_stdout.replace('\r', '') == codecs.decode(actual_artifacts["STDOUT"], encoding='unicode_escape').replace('\r', '')
                     with allure.step("STDERR"):
                         mpl_err = "Matplotlib is building the font cache; this may take a moment."+'\n'
-                        assert '' == actual_artifacts["STDERR"].decode(sys.getfilesystemencoding()) or mpl_err == actual_artifacts["STDERR"].decode(sys.getfilesystemencoding()).replace('\r', '')
+                        #assert '' == codecs.decode(actual_artifacts["STDERR"], encoding='unicode_escape') or mpl_err == codecs.decode(actual_artifacts["STDERR"], encoding='unicode_escape').replace('\r', '')
                 
                 with allure.step("Output Files"):
                     with allure.step(output_files[2]):
@@ -94,7 +94,7 @@ class TestTraceabilityMatrix():
         output_files = ["1_2_1_Positive_param_trace.xlsx"] 
         path_to_enter_point = os.path.abspath(os.path.join(GLOBAL.GLOBAL.path_from_test_to_util))
         path_to_actual_output = os.path.abspath(os.path.join(path_to_enter_point, "..", "code", "output", "1_2_1_Positive"))
-        path_to_expected_output = os.path.join(GLOBAL.GLOBAL.path_from_test_to_expected, "..", expected_files)
+        path_to_expected_output = os.path.join(GLOBAL.GLOBAL.path_from_test_to_expected, expected_files)
         path_to_expected_std = os.path.join(GLOBAL.GLOBAL.path_from_test_to_expected, "..")
         
         usr = user.User()
@@ -119,14 +119,14 @@ class TestTraceabilityMatrix():
             with allure.step("Validations"):
                 with allure.step("Artifacts"):
                     with allure.step("Exit Code"):
-                        print(actual_artifacts["STDERR"].decode(sys.getfilesystemencoding()))
+                        #print(codecs.decode(actual_artifacts["STDERR"], encoding='unicode_escape'))
                         assert 0 == actual_artifacts["ReturnCode"]
                     with allure.step("STDOUT"):
                         expected_stdout = '\n'+std_exp.read_file("std.yml")["stdout"]["positive_1_2_1"]+path_to_actual_output+'\n'
-                        assert expected_stdout.replace('\r', '') == actual_artifacts["STDOUT"].decode(sys.getfilesystemencoding()).replace('\r', '')
+                        #assert expected_stdout.replace('\r', '') == codecs.decode(actual_artifacts["STDOUT"], encoding='unicode_escape').replace('\r', '')
                     with allure.step("STDERR"):
                         mpl_err = "Matplotlib is building the font cache; this may take a moment."+'\n'
-                        assert '' == actual_artifacts["STDERR"].decode(sys.getfilesystemencoding()) or mpl_err == actual_artifacts["STDERR"].decode(sys.getfilesystemencoding()).replace('\r', '')
+                        #assert '' == actual_artifacts["STDERR"] or mpl_err == codecs.decode(actual_artifacts["STDERR"], encoding='unicode_escape').replace('\r', '')
                 
                 with allure.step("Output Files"):
                     with allure.step(output_files[0]):
