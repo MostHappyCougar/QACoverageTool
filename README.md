@@ -16,7 +16,7 @@ $ git clone https://github.com/MostHappyCougar/QACoverageTool.git
 Or just download packages from last release
 
 ## Requirements
-`requirements.txt` file is in code/python directory of this utility.
+`requirements.txt` file is in code/cov_tool directory of this utility.
 Change current work directory to `some/path/to/code/cov_tool` then execute in terminal to install requirements: 
 ```
 $ pip install -r requirements.txt
