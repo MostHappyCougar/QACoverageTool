@@ -18,3 +18,4 @@ RUN pip install contourpy==1.1.0 &
   pip install pytz==2023.3 &
   pip install PyYAML==6.0.1 &
   pip install six==1.16.0
+CMD ["python", "cov_tool"]
