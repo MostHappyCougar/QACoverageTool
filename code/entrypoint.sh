@@ -1,0 +1,1 @@
+cp -r ./volume/input ./tables_to_analisys; cp -f ./volume/config/* ./configurations; python cov_tool | tee; cp -r -f ./output ./volume/output; sleep 20
