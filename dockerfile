@@ -11,4 +11,4 @@ RUN apt -y install graphviz
 VOLUME ["./volume"]
 
 CMD ["chmod", "+x", "./entrypoint.sh"]
-ENTRYPOINT ./entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]
